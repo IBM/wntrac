@@ -1,0 +1,6 @@
+TargetLabel,NLPlabel,frequency,keywords,event_value=1,event_value=2,event_value=3,event_value=4,event_value=5
+school closure,school,86,educational institutions|educational center|exams|classes|education|examination,kindergarden|kg,school|k-12,universit|semester|college,--,--
+work restrictions,work,30,work |factory|factories|companies|business|non-essential business|bank|essential services|manufacturing plant,--,--,--,--,--
+public transportation,transportation,28,transport|train |trains|buses|transit|bus services|railway|ferry|essential services|essential commodities|non essential retail|non-essential retail,--,--,--,--,--
+entertainment/cultural sector closure,entertainment,16,gatherings|market|supermarket|cultural activit|parade|street|tournament|conference|fair|olympic|marathon|summit|show|league|championship|sport|ceremony|festival|comic|expo|tour|competition| event | events | basketball|football|concert|confederations| games | game |matches|soccer|rugby|race|contest|afl season|celebration|exhibition|play-off|play off,bar|restaurant|night club|casino|resort|clubs|beer parlour|beer parlor,museum|theat|cinema|librar|shop|film|mall|store,park|garden|playground|beach|stadium,gym|pool,church|temple|prayers|mosque|relig|shrine|synagog
+public services closure,service,5,department of homeland|post office|government operations ,parliament,legal,--,--,--
