@@ -1,6 +1,6 @@
 # Worldwide Non-pharmaceutical Interventions Tracker for COVID19 (WNTRAC) Automated NPI Curation System.
 
-The architecture the system is described in our paper: https://arxiv.org/abs/2009.07057. To run the natural language processing (NLP) pipeline, execute the Jupyter notebook located [here](pipeline/WNTRAC-models-demo.ipynb) by following the steps below.
+The architecture of the system is described in our paper: https://arxiv.org/abs/2009.07057. To run the natural language processing (NLP) pipeline, execute the Jupyter notebook located [here](pipeline/WNTRAC-models-demo.ipynb) by following the steps below.
 
 1. Check out the repository
 ```bash
