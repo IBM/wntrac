@@ -9,7 +9,7 @@ The architecture of the system is described in our paper: https://arxiv.org/abs/
 
 2. Create a virtual environment with Conda
 ```bash
-    $ conda create -n wntrac
+    $ conda env create -f environment.yml
 ```
 
 3. Activate the new environment
@@ -22,6 +22,4 @@ The architecture of the system is described in our paper: https://arxiv.org/abs/
     $ jupyter notebook WNTRAC-models-demo.ipynb
 ```
 
-5. Change the kernal used by the notebook instance: select the "wntrac" from Kernel option. (`jupyter -> kernel -> change kernel -> wntrac`)
-
-6. Run the entire notebook.
+5. Run the entire notebook.

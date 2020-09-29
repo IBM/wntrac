@@ -1,0 +1,22 @@
+name: wntrac
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.6
+  - numpy
+  - pip
+  - spacy
+  - spacy-model-en_core_web_lg
+  - nltk
+  - numpy
+  - pandas
+
+  - pip:
+    - torch==1.0.0
+    - textdistance
+    - simpletransformers==0.48.1 
+    - transformers==3.1.0
