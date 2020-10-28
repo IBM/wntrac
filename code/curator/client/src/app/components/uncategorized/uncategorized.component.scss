@@ -1,0 +1,93 @@
+/**
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// need to use ng-deep to override material design
+::ng-deep {
+    .uncategorized-card {
+        .mat-card-header-text {
+            margin: 0;
+        }
+    }
+  .cdk-overlay-pane {
+    min-width: 22.5%;
+  }
+  .mat-card-selected {
+    background: aquamarine; //azure
+  }
+
+  .mat-card-discarded {
+    background: pink;
+  }
+
+  .mat-radio-button {
+    padding-right: 5%
+  }
+
+  .mat-select-panel mat-option.mat-option {
+    height: unset;
+  }
+
+ .mat-option-text.mat-option-text {
+    overflow: auto;
+    text-overflow: unset;
+  }
+}
+.uncategorized-card {
+    margin-bottom: 10px;
+    .form-wrap mat-form-field {
+        margin-right: 15px;
+    }
+}
+
+.customSelector {
+  padding-right: 20px;
+}
+
+.officialValue {
+  background: #D9FFF2;
+  font-size: 0.9em;
+  height: 36px;
+}
+
+.userSuggestedValue {
+  //background: #FFE5E5;
+  background: #FFEBDA;
+  font-size: 0.9em;
+  height: 36px;
+}
+
+.dropDownOptions {
+  font-size: 0.9em;
+  height: 36px;
+}
+
+.chips {
+  background-color: #D9F8D3;
+  color: #2A5D1A;
+  //color: white;
+  font-size: 0.8em;
+}
+
+.tags {
+  width: 25%;
+}
+
+.mat-chip {
+  min-height: 25px;
+  font-weight: 400;
+}
+
+

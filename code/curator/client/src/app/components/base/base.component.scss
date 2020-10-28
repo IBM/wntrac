@@ -1,0 +1,89 @@
+/**
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+mat-toolbar {
+    margin-bottom: 5px;
+}
+
+.content {
+    margin: 10px;
+    margin-bottom: 40px;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  gt-loading {
+    width: 100px;
+  }
+}
+
+
+.scrollabletextbox {
+    height: 125px;
+    max-height: 100%;
+    width: 100%;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    overflow:scroll;
+}
+
+
+.uncategorized-form {
+  max-height: 25%;
+  min-height: auto;
+  overflow:scroll;
+}
+
+#doc_text {
+  height: 60%;
+}
+
+.scrollabletextboxContainer {
+        height: 100%;
+}
+
+.scrollabletextboxContainer h1 {
+    margin-bottom: 0px;
+}
+
+#scollableBoxPane {
+  height: 20%
+}
+
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  //background-color: yellow;
+}
+
+.zone {
+  background-color: grey;
+}
+
+
+.content {
+  height: 100%
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

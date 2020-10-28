@@ -1,0 +1,385 @@
+country,URL,code,approved
+Abkhazia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Abkhazia,GEO-AB,TRUE
+Asia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Asia,Asia,FALSE
+Belgium,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Belgium,BEL,TRUE
+Cambodia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Cambodia,KHM,TRUE
+Canada,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Canada,CAN,TRUE
+Montreal,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Montreal,CAN-Montreal,FALSE
+Quebec,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Quebec,CAN-QC,FALSE
+Chile,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Chile,CHL,TRUE
+Hubei,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Hubei,CHN-HB,FALSE
+Macau,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Macau,CHN-MA,FALSE
+Shanghai,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Shanghai,CHN-SH,FALSE
+Sichuan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sichuan,CHN-SI,FALSE
+Costa Rica,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Costa_Rica,CRI,TRUE
+Croatia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Croatia,HRV,TRUE
+the Czech Republic,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Czech_Republic,CZE,TRUE
+Denmark,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Denmark,DNK,TRUE
+the Donetsk People's Republic,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Donetsk_People's_Republic,UKR-14,FALSE
+the Faroe Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Faroe_Islands,DEN-FI,TRUE
+Fiji,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Fiji,FJI,TRUE
+Germany,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Germany,DEU,TRUE
+Bermuda,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bermuda,GBR-BER,FALSE
+the British Virgin Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_British_Virgin_Islands,GBR-BVI,FALSE
+Gibraltar,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Gibraltar,GBR-GIB,FALSE
+the Isle of Man,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Isle_of_Man,GBR-ISL,FALSE
+Montserrat,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Montserrat,GBR-MON,FALSE
+the United Kingdom,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_Kingdom,GBR,TRUE
+Greece,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Greece,GRC,TRUE
+Grenada,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Grenada,GRD,TRUE
+Guatemala,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guatemala,GTM,TRUE
+Guernsey,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guernsey,GGY,FALSE
+Guyana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guyana,GUY,TRUE
+Haiti,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Haiti,HTI,TRUE
+Honduras,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Honduras,HND,TRUE
+Hungary,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Hungary,HUN,TRUE
+India,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_India,IND,TRUE
+Andhra Pradesh,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Andhra_Pradesh,IND-AP,FALSE
+Goa,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Goa,IND-GA,FALSE
+Gujarat,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Gujarat,IND-GJ,FALSE
+Jharkhand,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Jharkhand,IND-JH,FALSE
+Karnataka,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Karnataka,IND-KA,FALSE
+Kerala,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kerala,IND-KL,FALSE
+Madhya Pradesh,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Madhya_Pradesh,IND-MP,FALSE
+Maharashtra,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Maharashtra,IND-MH,FALSE
+Odisha,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Odisha,IND-OR,FALSE
+Pune,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Pune,IND-Pune,FALSE
+"Punjab, India","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Punjab,_India",IND-PB,FALSE
+Rajasthan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Rajasthan,IND-RJ,FALSE
+Uttar Pradesh,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Uttar_Pradesh,IND-UP,FALSE
+West Bengal,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_West_Bengal,IND-WB,FALSE
+Indonesia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Indonesia,IDN,TRUE
+Inner Mongolia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Inner_Mongolia,CHN-MN,FALSE
+Iran,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Iran,IRN,TRUE
+Iraq,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Iraq,IRQ,TRUE
+Italy,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Italy,ITA,TRUE
+Jamaica,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Jamaica,JAM,TRUE
+Jordan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Jordan,JOR,TRUE
+Kazakhstan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kazakhstan,KAZ,TRUE
+Kuwait,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kuwait,KWT,TRUE
+the Luhansk People's Republic,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Luhansk_People's_Republic,UKR-09,TRUE
+Mainland China,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_mainland_China,CHN,TRUE
+Malaysia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Malaysia,MYS,TRUE
+Sabah,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sabah,MYS-12,FALSE
+Sarawak,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sarawak,MYS-13,FALSE
+Malta,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Malta,MLT,TRUE
+Mexico,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mexico,MEX,TRUE
+Transnistria,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Transnistria,MDA-Transnistria,FALSE
+Myanmar,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Myanmar,MMR,TRUE
+Nepal,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nepal,NPL,TRUE
+The Netherlands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Netherlands,NLD,TRUE
+Aruba,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Aruba,NLD-ARU,FALSE
+Bonaire,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bonaire,BES,FALSE
+Saba,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saba,BES,FALSE
+Sint Maarten,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sint_Maarten,NLD-SMT,FALSE
+Sint Eustatius,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sint_Eustatius,BES,FALSE
+Nicaragua,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nicaragua,NIC,TRUE
+North America,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_America,North_America,FALSE
+North Asia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_Asia,North_Asia,FALSE
+North Korea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_Korea,PRK,TRUE
+North Macedonia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_Macedonia,MKD,TRUE
+Northern Cyprus,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Northern_Cyprus,CYP,TRUE
+Oceania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Oceania,OCEANIA,FALSE
+Oman,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Oman,OMN,TRUE
+Pakistan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Pakistan,PAK,TRUE
+Paraguay,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Paraguay,PRY,TRUE
+the Bicol Region,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Bicol_Region,PHL-05,FALSE
+the Cordillera Administrative Region,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Cordillera_Administrative_Region,PHL-15,FALSE
+the Davao Region,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Davao_Region,PHL-11,FALSE
+Western Visayas,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Western_Visayas,PHL-06,FALSE
+Bangsamoro,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bangsamoro,PHL-14,FALSE
+Cagayan Valley,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Cagayan_Valley,PHL-02,FALSE
+Calabarzon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Calabarzon,PHL-40,FALSE
+Central Luzon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Central_Luzon,PHL-03,FALSE
+Central Visayas,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Central_Visayas,PHL-07,FALSE
+Metro Manila,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Metro_Manila,PHL-Metro_Manila,FALSE
+Qatar,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Qatar,QAT,TRUE
+the Republic of Artsakh,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Republic_of_Artsakh,ARM-the_Republic_of_Artsakh,FALSE
+Réunion,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Réunion,FRA-Reunion,FALSE
+Romania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Romania,ROU,TRUE
+Asturias,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Asturias,ESP-AS,FALSE
+Saint Barthélemy,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saint_Barthélemy,FRA-BL,FALSE
+Saint Kitts and Nevis,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saint_Kitts_and_Nevis,KNA,TRUE
+Saint Lucia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saint_Lucia,LCA,TRUE
+Saint Vincent and the Grenadines,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saint_Vincent_and_the_Grenadines,VCT,TRUE
+Saudi Arabia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saudi_Arabia,SAU,TRUE
+Serbia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Serbia,SRB,TRUE
+Sevastopol,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sevastopol,UKR-Sevastopol,FALSE
+Singapore,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Singapore,SGP,TRUE
+South America,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_America,South_America,FALSE
+South Asia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_Asia,South_Asia,FALSE
+South Korea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_Korea,KOR,TRUE
+Spain,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Spain,ESP,TRUE
+Ceuta,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ceuta,ESP-Ceuta,FALSE
+the Community of Madrid,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Community_of_Madrid,ESP-Melilla,FALSE
+Melilla,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Melilla,ESP-Sri Lanka,FALSE
+Sri Lanka,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sri_Lanka,LKA,TRUE
+the State of Palestine,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_State_of_Palestine,PSE,TRUE
+Suriname,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Suriname,SUR,TRUE
+Tajikistan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Tajikistan,TJK,TRUE
+Thailand,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Thailand,THA,TRUE
+Nonthaburi Province,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nonthaburi_Province,THA-12,FALSE
+the Bahamas,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Bahamas,BHS,TRUE
+the Maldives,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Maldives,MDV,TRUE
+the Philippines,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Philippines,PHL,TRUE
+the Republic of Ireland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Republic_of_Ireland,IRL,TRUE
+Trinidad and Tobago,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Trinidad_and_Tobago,TTO,TRUE
+Tunisia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Tunisia,TUN,TRUE
+Turkey,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Turkey,TUR,TRUE
+Turkmenistan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Turkmenistan,TKM,TRUE
+the United Arab Emirates,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_Arab_Emirates,ARE,TRUE
+Jersey,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Jersey,JEY,FALSE
+the United States,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_States,USA,TRUE
+Indiana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Indiana,USA-IN,TRUE
+Utah,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Utah,USA-UT,TRUE
+Vermont,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Vermont,USA-VT,TRUE
+Uruguay,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Uruguay,URY,TRUE
+Venezuela,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Venezuela,VEN,TRUE
+Africa,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Africa,Africa,FALSE
+Europe,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Europe,Europe,FALSE
+Afghanistan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Afghanistan,AFG,TRUE
+Albania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Albania,ALB,TRUE
+Algeria,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Algeria,DZA,TRUE
+Andorra,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Andorra,AND,TRUE
+Angola,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Angola,AGO,TRUE
+Anguilla,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Anguilla,AIA,TRUE
+Antarctica,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Antarctica,ATA,TRUE
+Antigua and Barbuda,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Antigua_and_Barbuda,ATG,TRUE
+Argentina,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Argentina,ARG,TRUE
+Armenia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Armenia,ARM,TRUE
+Australia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Australia,AUS,TRUE
+Austria,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Austria,AUT,TRUE
+Azerbaijan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Azerbaijan,AZE,TRUE
+Bahrain,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bahrain,BHR,TRUE
+Bangladesh,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bangladesh,BGD,TRUE
+Barbados,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Barbados,BRB,TRUE
+Belarus,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Belarus,BLR,TRUE
+Belize,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Belize,BLZ,TRUE
+Benin,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Benin,BEN,TRUE
+Bhutan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bhutan,BTN,TRUE
+Bolivia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bolivia,BOL,TRUE
+Bosnia and Herzegovina,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bosnia_and_Herzegovina,BIH,TRUE
+Botswana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Botswana,BWA,TRUE
+Brazil,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Brazil,BRA,TRUE
+Brunei,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Brunei,BRN,TRUE
+Bulgaria,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bulgaria,BGR,TRUE
+Burkina Faso,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Burkina_Faso,BFA,TRUE
+Burundi,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Burundi,BDI,TRUE
+Cameroon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Cameroon,CMR,TRUE
+Cape Verde,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Cape_Verde,CPV,TRUE
+Chad,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Chad,TCD,TRUE
+Colombia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Colombia,COL,TRUE
+Cuba,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Cuba,CUB,TRUE
+Cyprus,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Cyprus,CYP,TRUE
+Djibouti,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Djibouti,DJI,TRUE
+Dominica,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Dominica,DMA,TRUE
+Ecuador,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ecuador,ECU,TRUE
+Egypt,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Egypt,EGY,TRUE
+El Salvador,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_El_Salvador,SLV,TRUE
+Equatorial Guinea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Equatorial_Guinea,GNQ,TRUE
+Eritrea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Eritrea,ERI,TRUE
+Estonia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Estonia,EST,TRUE
+Ethiopia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ethiopia,ETH,TRUE
+Finland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Finland,FIN,TRUE
+France,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_France,FRA,TRUE
+French Guiana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_French_Guiana,GUF,TRUE
+French Polynesia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_French_Polynesia,PYF,TRUE
+Gabon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Gabon,GAB,TRUE
+Ghana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ghana,GHA,TRUE
+Greenland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Greenland,DEN-GR,TRUE
+Guadeloupe,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guadeloupe,FRA-GU,TRUE
+Guam,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guam,USA-GU,TRUE
+Guinea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guinea,GIN,TRUE
+Guinea-Bissau,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Guinea-Bissau,GNB,TRUE
+Iceland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Iceland,ISL,TRUE
+Israel,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Israel,ISR,TRUE
+Japan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Japan,JPN,TRUE
+Kenya,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kenya,KEN,TRUE
+Kyrgyzstan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kyrgyzstan,KGZ,TRUE
+Laos,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Laos,LAO,TRUE
+Latvia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Latvia,LVA,TRUE
+Lebanon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Lebanon,LBN,TRUE
+Liberia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Liberia,LBR,TRUE
+Libya,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Libya,LBY,TRUE
+Liechtenstein,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Liechtenstein,LIE,TRUE
+Lithuania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Lithuania,LTU,TRUE
+Luxembourg,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Luxembourg,LUX,TRUE
+Madagascar,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Madagascar,MDG,TRUE
+Malawi,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Malawi,MWI,TRUE
+Mali,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mali,MLI,TRUE
+Martinique,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Martinique,FRA-MA,TRUE
+Mauritania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mauritania,MRT,TRUE
+Mauritius,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mauritius,MUS,TRUE
+Mayotte,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mayotte,FRA-MA,TRUE
+Moldova,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Moldova,MDA,TRUE
+Monaco,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Monaco,MCO,TRUE
+Mongolia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mongolia,MNG,TRUE
+Montenegro,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Montenegro,MNE,TRUE
+Morocco,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Morocco,MAR,TRUE
+Mozambique,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mozambique,MOZ,TRUE
+Namibia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Namibia,NAM,TRUE
+New Caledonia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Caledonia,FRA-NC,TRUE
+New Zealand,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Zealand,NZL,TRUE
+Niger,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Niger,NER,TRUE
+Nigeria,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nigeria,NGA,TRUE
+Norway,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Norway,NOR,TRUE
+Panama,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Panama,PAN,TRUE
+Papua New Guinea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Papua_New_Guinea,PNG,TRUE
+Peru,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Peru,PER,TRUE
+Poland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Poland,POL,TRUE
+Portugal,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Portugal,PRT,TRUE
+Puerto Rico,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Puerto_Rico,USA-PR,TRUE
+Russia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Russia,RUS,TRUE
+Rwanda,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Rwanda,RWA,TRUE
+Saint Helena,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saint_Helena,SHN,TRUE
+Saint Pierre and Miquelon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saint_Pierre_and_Miquelon,SPM,TRUE
+San Marino,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_San_Marino,SMR,TRUE
+Senegal,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Senegal,SEN,TRUE
+Seychelles,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Seychelles,SYC,TRUE
+Sierra Leone,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sierra_Leone,SLE,TRUE
+Slovakia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Slovakia,SVK,TRUE
+Slovenia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Slovenia,SVN,TRUE
+Somalia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Somalia,SOM,TRUE
+South Africa,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_Africa,ZAF,TRUE
+Sudan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sudan,SDN,TRUE
+Sweden,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sweden,SWE,TRUE
+Switzerland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Switzerland,CHE,TRUE
+Syria,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Syria,SYR,TRUE
+Sao Tome and Principe,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_São_Tomé_and_Príncipe,STP,FALSE
+Taiwan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Taiwan,TWN,TRUE
+Tanzania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Tanzania,TZA,TRUE
+Togo,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Togo,TGO,TRUE
+Uganda,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Uganda,UGA,TRUE
+Uzbekistan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Uzbekistan,UZB,TRUE
+Vatican City,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Vatican_City,VAT,TRUE
+Vietnam,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Vietnam,VNM,TRUE
+Western Sahara,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Western_Sahara,ESH,TRUE
+Yemen,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Yemen,YEM,TRUE
+Zambia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Zambia,ZMB,TRUE
+Zimbabwe,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Zimbabwe,ZWE,TRUE
+Alabama,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Alabama,USA-AL,TRUE
+Alaska,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Alaska,USA-AK,TRUE
+Arizona,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Arizona,USA-AZ,TRUE
+Arkansas,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Arkansas,USA-AR,TRUE
+California,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_California,USA-CA,TRUE
+Colorado,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Colorado,USA-CO,TRUE
+Connecticut,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Connecticut,USA-CT,TRUE
+Delaware,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Delaware,USA-DE,TRUE
+Florida,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Florida,USA-FL,TRUE
+Hawaii,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Hawaii,USA-HI,TRUE
+Idaho,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Idaho,USA-ID,TRUE
+Illinois,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Illinois,USA-IL,TRUE
+Iowa,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Iowa,USA-IA,TRUE
+Kansas,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kansas,USA-KS,TRUE
+Kentucky,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kentucky,USA-KY,TRUE
+Louisiana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Louisiana,USA-LA,TRUE
+Maine,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Maine,USA-ME,TRUE
+Maryland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Maryland,USA-MD,TRUE
+Massachusetts,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Massachusetts,USA-MA,TRUE
+Michigan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Michigan,USA-MI,TRUE
+Minnesota,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Minnesota,USA-MN,TRUE
+Mississippi,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Mississippi,USA-MS,TRUE
+Missouri,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Missouri,USA-MO,TRUE
+Montana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Montana,USA-MT,TRUE
+Nebraska,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nebraska,USA-NE,TRUE
+Nevada,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nevada,USA-NV,TRUE
+New Hampshire,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Hampshire,USA-NH,TRUE
+New Jersey,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Jersey,USA-NJ,TRUE
+New Mexico,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Mexico,USA-NM,TRUE
+North Carolina,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_Carolina,USA-NC,TRUE
+North Dakota,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_Dakota,USA-ND,TRUE
+Ohio,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ohio,USA-OH,TRUE
+Oklahoma,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Oklahoma,USA-OK,TRUE
+Oregon,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Oregon,USA-OR,TRUE
+Pennsylvania,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Pennsylvania,USA-PA,TRUE
+Rhode Island,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Rhode_Island,USA-RI,TRUE
+South Carolina,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_Carolina,USA-SC,TRUE
+South Dakota,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_Dakota,USA-SD,TRUE
+Tennessee,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Tennessee,USA-TN,TRUE
+Texas,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Texas,USA-TX,TRUE
+Virginia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Virginia,USA-VA,TRUE
+West Virginia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_West_Virginia,USA-WV,TRUE
+Wisconsin,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Wisconsin,USA-WI,TRUE
+Wyoming,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Wyoming,USA-WY,TRUE
+Akrotiri and Dhekelia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Akrotiri_and_Dhekelia,GBR-Akrotiri_and_Dhekelia,FALSE
+"Albany County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Albany_County,_New_York","USA-Albany_County,_New_York",FALSE
+Alberta,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Alberta,CAN-AB,FALSE
+Assam,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Assam,IND-AS,FALSE
+Bihar,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Bihar,IND-BR,FALSE
+Boston,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Boston,USA-Boston,FALSE
+British Columbia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_British_Columbia,CAN-BC,FALSE
+British Overseas Territories,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_British_Overseas_Territories,GBR-British_Overseas_Territories,FALSE
+"Columbia County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Columbia_County,_New_York","USA-Columbia_County,_New_York",FALSE
+"Columbus, Ohio","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Columbus,_Ohio","USA-Columbus,_Ohio",FALSE
+Crimea,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Crimea,UKR-Crimea,FALSE
+Curacao,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Curaçao,CUW,FALSE
+Delhi,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Delhi,IND-DL,FALSE
+"Dutchess County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Dutchess_County,_New_York","USA-Dutchess_County,_New_York",FALSE
+Timor-Leste,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_East_Timor,TLS,TRUE
+Easter Island,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Easter_Island,CHL-Easter_Island,FALSE
+"Erie County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Erie_County,_New_York","USA-Erie_County,_New_York",FALSE
+Eswatini,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Eswatini,SWZ,TRUE
+French Saint Martin,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_French_Saint_Martin,MAF,TRUE
+"Genesee County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Genesee_County,_New_York","USA-Genesee_County,_New_York",FALSE
+Georgia (U.S. state),https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Georgia_(U.S._state),USA-GA,TRUE
+Georgia (country),https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Georgia_(country),GEO,TRUE
+Haryana,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Haryana,IND-HR,FALSE
+Heilongjiang,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Heilongjiang,CHN-HL,FALSE
+Henan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Henan,CHN-HA,FALSE
+Hong Kong,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Hong_Kong,CHN-HK,TRUE
+Ivory Coast,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ivory_Coast,CIV,TRUE
+Kosovo,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Kosovo,KOS,TRUE
+Liaoning,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Liaoning,CHN-LI,FALSE
+London,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_London,GBR-London,FALSE
+"Madison County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Madison_County,_New_York","USA-Madison_County,_New_York",FALSE
+Manitoba,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Manitoba,CAN-MB,FALSE
+"Monroe County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Monroe_County,_New_York","USA-Monroe_County,_New_York",FALSE
+"Nassau County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nassau_County,_New_York","USA-Nassau_County,_New_York",FALSE
+New Brunswick,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Brunswick,CAN-NB,FALSE
+New York (state),https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_(state),USA-NY,TRUE
+New York City,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City,USA-New_York_City,FALSE
+Newfoundland and Labrador,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Newfoundland_and_Labrador,CAN-NL,FALSE
+"Niagara County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Niagara_County,_New_York","USA-Niagara_County,_New_York",FALSE
+North Rhine-Westphalia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_North_Rhine-Westphalia,DEU-NW,FALSE
+Nova Scotia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nova_Scotia,CAN-NS,FALSE
+Nunavut,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nunavut,CAN-NU,FALSE
+"Oneida County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Oneida_County,_New_York","USA-Oneida_County,_New_York",FALSE
+"Onondaga County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Onondaga_County,_New_York","USA-Onondaga_County,_New_York",FALSE
+Ontario,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ontario,CAN-ON,FALSE
+"Orange County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Orange_County,_New_York","USA-Orange_County,_New_York",FALSE
+Philadelphia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Philadelphia,USA-Philadelphia,FALSE
+"Portland, Oregon","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Portland,_Oregon","USA-Portland,_Oregon",FALSE
+Prince Edward Island,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Prince_Edward_Island,CAN-PE,FALSE
+"Putnam County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Putnam_County,_New_York","USA-Putnam_County,_New_York",FALSE
+"Rensselaer County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Rensselaer_County,_New_York","USA-Rensselaer_County,_New_York",FALSE
+"Saratoga County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saratoga_County,_New_York","USA-Saratoga_County,_New_York",FALSE
+Saskatchewan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Saskatchewan,CAN-SK,FALSE
+"Schenectady County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Schenectady_County,_New_York","USA-Schenectady_County,_New_York",FALSE
+Somaliland,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Somaliland,SOM,TRUE
+South Sudan,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_South_Sudan,SSD,TRUE
+"St. Lawrence County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_St._Lawrence_County,_New_York","USA-St._Lawrence_County,_New_York",FALSE
+"Steuben County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Steuben_County,_New_York","USA-Steuben_County,_New_York",FALSE
+"Suffolk County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Suffolk_County,_New_York","USA-Suffolk_County,_New_York",FALSE
+"Sullivan County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Sullivan_County,_New_York","USA-Sullivan_County,_New_York",FALSE
+Tamil Nadu,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Tamil_Nadu,IND-TN,FALSE
+China,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Tibet,CHN-TB,TRUE
+"Ulster County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Ulster_County,_New_York","USA-Ulster_County,_New_York",FALSE
+"Warren County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Warren_County,_New_York","USA-Warren_County,_New_York",FALSE
+Washington (state),https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Washington_(state),USA-WA,TRUE
+"Washington, D.C.","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Washington,_D.C.",USA-DC,TRUE
+"Westchester County, New York","https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Westchester_County,_New_York","USA-Westchester_County,_New_York",FALSE
+Xinjiang,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Xinjiang,CHN-XI,FALSE
+Canary Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Canary_Islands,ESP-CN,FALSE
+Cayman Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Cayman_Islands,CYM,FALSE
+Central African Republic,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Central_African_Republic,CAF,TRUE
+Comoros,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Comoros,COM,TRUE
+Democratic Republic of the Congo,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Democratic_Republic_of_the_Congo,COD,TRUE
+Dominican Republic,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Dominican_Republic,DOM,TRUE
+Falkland Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Falkland_Islands,FLK,FALSE
+Gambia,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Gambia,GMB,TRUE
+Guantanamo Bay Naval Base,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Guantanamo_Bay_Naval_Base,USA-Guantanamo_Bay_Naval_Base,TRUE
+Northern Mariana Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Northern_Mariana_Islands,USA-Northern_Mariana_Islands,TRUE
+Republic of the Congo,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Republic_of_the_Congo,COG,TRUE
+Turks and Caicos Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Turks_and_Caicos_Islands,TCA,FALSE
+United States Virgin Islands,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_States_Virgin_Islands,USA-Virgin_Islands,TRUE
+Lesotho,https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Lesotho,LSO,TRUE

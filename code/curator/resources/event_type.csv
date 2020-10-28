@@ -1,0 +1,17 @@
+﻿eventType,valueType,integerString,cat0,cat1,cat2,cat3,cat4,cat5
+changes in prison-related policies,Integer,number of prisoners that were released (enter 'na' if unavailable),,,,,,
+confinement,Category,,,Mandatory/advisedfor all the population,Mandatory/advised for people at risk,,,
+contact tracing,Category,,Tracing back 14 days of contacts of a confirmed patient through electronic information,Tracing contacts of a person who needs to be isolated as was in contact with a confirmed patient through electronic information,,,,
+domestic flight restriction,Country,name of the state where the passenger is arriving from,,,,,,
+economic impact,Category,,Stock market,Unemployment rate,Industrial production,,,
+entertainment/cultural sector closure,Category,,,"Bars, restaurants, night clubs","Museums, theaters, cinema, libraries, festivities",Parks and public gardens,Gyms and pools,Churches
+freedom of movement (nationality dependent),Country,name of the country the citizen is from.,,,,,,
+international flight restrictions,Country,name of the country or state where the passenger is arriving from,,,,,,
+introduction of travel quarantine policies,Country,name of the country or state where the passenger travelled from,,,,,,
+state of emergency (legal impact),Category,,,National guard joins the law enforcement,Army joins the law enforcement,,,
+mask wearing,Category,,,Recommended,,,,
+mass gatherings,Integer,Maximum number of people in social gatherings allowed by the government (enter 'na' if unavailable),,,,,,
+public services closure,Category,,,Government/parliament system,Legal system,,,
+public transportation,Category,,,Partial cancellation of routes/stops during the week/weekend,Total cancellation of transport (special case for some states in China),,,
+school closure,Category,,All schools (general) closed,Only kindergartens/daycare,Only schools (primary/secondary) closed,Universities closed,,
+work restrictions,Category,,,Suggestion to work from home for non-essential workers,Mandatory work from home enforcement for non-essential workers,,,

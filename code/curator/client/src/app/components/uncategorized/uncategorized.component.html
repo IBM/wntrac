@@ -1,0 +1,260 @@
+<!-- /**
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+
+<mat-card class="uncategorized-card "
+          [ngClass]="this.sentToSave ? (this.sentToDiscard ? '': 'mat-card-selected') : (this.sentToDiscard ? 'mat-card-discarded': '')  "
+>
+<div>
+    <mat-card-content>
+      <p>{{evidence.text}}</p>
+      <div class="form-wrap" [formGroup]="uncategorizedForm">
+
+          <mat-form-field hintLabel="Event ID" *ngIf="viewerMode" style="min-width: 15%">
+            <mat-label>Event ID</mat-label>
+            <input formControlName="event_id" matInput disabled>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text"
+                placeholder="Region (ISO code)"
+                aria-label="country"
+                matInput
+                formControlName="country"
+                [matAutocomplete]="autoCountry"
+                (blur)="checkCountry()"
+                required>
+            <mat-autocomplete #autoCountry="matAutocomplete" (optionSelected)="countryClick($event)">
+            <mat-option *ngFor="let option of filteredCountries | async" [value]="option.code" class = "dropDownOptions">
+                {{option.country}} ({{option.code}})
+            </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="uncategorizedForm.controls.country.hasError('required')">
+                Country is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" (click)="picker.open()" required />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="uncategorizedForm.controls.date.hasError('required')">
+                Date is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        <mat-form-field hintLabel="Date is approximate *" class="mat-form-field--no-underline" required>
+          <input matInput placeholder="" style="display: none" >  <!-- It breaks if display none is not used. -->
+            <mat-radio-group required
+                             formControlName="approximate_date_selector">
+                <mat-radio-button value="true">Yes</mat-radio-button>
+                <mat-radio-button value="false">No</mat-radio-button>
+            </mat-radio-group >
+        </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type" required>
+                <mat-option *ngFor="let option of types" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <!-- dummy value field for if type is not yet selected -->
+          <mat-form-field hintLabel="You must select a 'Type' before you can select a 'Value'" *ngIf="!viewerMode && !value">
+            <mat-label>Value</mat-label>
+            <input matInput #input1 required disabled/>
+          </mat-form-field>
+
+          <mat-form-field hintLabel="Preexisting value" *ngIf="viewerMode">
+            <mat-label>Value</mat-label>
+            <input matInput #input1 formControlName="value" required/>
+          </mat-form-field>
+
+          <mat-form-field [hintLabel]="value.integerString" *ngIf="!viewerMode && value && value.data_type == 'Integer'">
+            <mat-label>Value (Integer) (or "na")</mat-label>
+            <input matInput #input2 ngModel pattern="^(na|\d+){1}$" placeholder="Ex. 12" formControlName="value" required/>
+            <mat-error *ngIf="uncategorizedForm.controls.value.hasError('required')">
+                Value is <strong>required.</strong> You may enter "na" if needed.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field [hintLabel]="value.integerString" *ngIf="!viewerMode && value && value.data_type == 'String'">
+            <mat-label>Value (String) (or "na")</mat-label>
+            <input matInput placeholder="Ex. United States" formControlName = "value" required/>
+            <mat-error *ngIf="uncategorizedForm.controls.value.hasError('required')">
+                Value is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field [hintLabel]="value.integerString" class="customSelector" *ngIf="!viewerMode && value && value.data_type == 'Country'">
+            <input matInput placeholder="" style="display: none" >  <!-- It breaks if display none is not used. -->
+            <ng-multiselect-dropdown
+              [placeholder]="'Regions (required)'"
+              [settings]="multiselectDropdownSettings"
+              [data]="allCountries"
+              [(ngModel)]="multiSelectedCountries"
+              formControlName="value"
+              ngModel pattern="^(?!\s*$).+"
+              required>
+            </ng-multiselect-dropdown>
+            <mat-error *ngIf="uncategorizedForm.controls.value.hasError('required')">
+              Value is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field hintLabel="Please select a value (or enter your own)" *ngIf="!viewerMode && value && value.data_type == 'Category' && value.categories">
+            <mat-label>Value</mat-label>
+            <input type="text"
+                placeholder="Enter a value"
+                aria-label="value"
+                matInput
+                formControlName="value"
+                ngModel pattern="^(?!\s*$).+"
+                [matAutocomplete]="autoCategory"
+                required>
+            <mat-autocomplete #autoCategory="matAutocomplete">
+              <mat-option *ngFor="let option of value.categories" [value]="option.value" class = "{{option.official_value === 'True' ? 'officialValue' : 'userSuggestedValue'}}">
+                      {{option.value}}
+                  </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="uncategorizedForm.controls.value.hasError('required')">
+                Value is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        <mat-form-field class="tags" hintLabel="Please select some tags (or create your own)" *ngIf="!viewerMode && value && value.data_type == 'Tags'">
+          <mat-chip-list #chipList aria-label="Tags">
+            <mat-chip class = "chips"
+              *ngFor="let tag of selectedTags"
+              [removable]=true
+              (removed)="removeTag(tag)">
+              {{tag}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Tags (press enter or comma to create a tag) *"
+              #tagInput
+              formControlName="value"
+              [matAutocomplete]="autoTags"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addTag($event)"
+              required>
+          </mat-chip-list>
+          <mat-autocomplete #autoTags="matAutocomplete" (optionSelected)="selectTag($event)">
+            <mat-option *ngFor="let tag of filteredTags | async" [value]="tag.value" class = "dropDownOptions">
+              {{tag.value}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="uncategorizedForm.controls.value.hasError('required')">
+                Tags are <strong>required</strong>. Press enter after typing to create a tag.
+            </mat-error>
+        </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Restriction</mat-label>
+            <mat-select formControlName="restriction" required>
+              <mat-option value="1">Imposed</mat-option>
+              <mat-option value="0">Relieved</mat-option>
+              <mat-option value="2">Extended</mat-option>
+            </mat-select>
+            <mat-error *ngIf="uncategorizedForm.controls.restriction.hasError('required')">
+                Restriction is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        <mat-form-field hintLabel="Citation URL" *ngIf="!viewerMode">
+            <!--<mat-label>Citation url</mat-label>-->
+            <input
+              matInput
+              #input
+              formControlName="citation_url"
+            />
+          </mat-form-field>
+
+        <mat-form-field hintLabel="Annotator's citation" *ngIf="!viewerMode">
+            <!--<mat-label>Annotators citation url</mat-label>-->
+            <input
+              matInput
+              #input
+              formControlName="anno_provided_url"
+            />
+          </mat-form-field>
+
+
+        <mat-form-field  hintLabel="Fine grained location option *" floatPlaceholder="always" class="mat-form-field--no-underline">
+            <input matInput placeholder="" style="display: none" >  <!-- It breaks if display none is not used. -->
+            <!--<mat-label>Fine grained location</mat-label>-->
+            <mat-radio-group [required]="true"
+                             (change)="onFineLocationChangeOption();"
+                             formControlName="fine_grained_location_selector">
+                <!--<mat-label>Fine grained location option: </mat-label>-->
+                <mat-radio-button value="default">Default   </mat-radio-button>
+                <mat-radio-button value="specific">Specific</mat-radio-button>
+            </mat-radio-group >
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Fine grained location *" *ngIf="fine_grained_location_selector != ''" required>
+            <input
+              matInput
+              #input
+              formControlName="fine_grained_location"
+              required
+            />
+          <mat-error *ngIf="uncategorizedForm.controls.fine_grained_location.hasError('required')">
+                Location is <strong>required</strong>. Switch to "Default" if you cannot provide one.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="onSubmit()" mat-flat-button color="primary" [disabled]="viewerMode || !uncategorizedForm.valid || !uncategorizedForm.touched || saveLoading || discardLoading || showEventLoading">
+          Save
+          <span *ngIf="saveLoading" style="float:right">
+            <gt-loading small="true"></gt-loading>
+          </span>
+      </button>
+      <button (click)="discardCandidateEvidence()" mat-stroked-button color="warn" [disabled] = "viewerMode || saveLoading || discardLoading || showEventLoading">
+        Discard
+          <span *ngIf="discardLoading" style="float:right">
+            <gt-loading small="true"></gt-loading>
+          </span>
+      </button>
+
+
+      <button (click)="focusOnText()"  mat-stroked-button color="link" [disabled]="viewerMode">Focus on text
+      </button>
+
+      <button (click)="findMatches()"  mat-flat-button color="accent"
+              [disabled]="(showEventLoading || saveLoading || discardLoading || this.evidence.event_id === 'None' || this.evidence.event_id === '(blank)' || this.evidence.event_id === '')">
+        Show Event
+        <span *ngIf="showEventLoading" style="float:right">
+            <gt-loading small="true"></gt-loading>
+          </span>
+      </button>
+
+    </mat-card-actions>
+  </div>
+  </mat-card>
+
+<router-outlet></router-outlet>
