@@ -1,0 +1,205 @@
+<!--
+  ~ Copyright 2020 IBM Corporation
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div id="control-panel-row-container" class="card-inner">
+  <div class="row">
+    <div class="col-xl-2 not_responsive">
+      <div class="control-panel-form form-group">
+        <div class="form-control-wrap">
+          <mat-form-field class="settings-select" id="x-axis-select">
+            <mat-label>Date or Days (X-axis)</mat-label>
+            <mat-select [(ngModel)]="CURRENT_DROPDOWN_ITEMS_X_AXIS" (selectionChange)="xAxisDropdownChangeListener($event)">
+              <mat-option *ngFor="let obj of DROPDOWN_ITEMS_X_AXIS" [value]="obj">{{obj}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 not_responsive">
+      <div class="control-panel-form form-group">
+        <div class="form-control-wrap">
+          <mat-form-field class="settings-select" id="y-axis-select">
+            <mat-label>Cases, Deaths or Recoveries (Y-axis)</mat-label>
+            <mat-select [(ngModel)]="CURRENT_DROPDOWN_ITEMS_Y_AXIS" (selectionChange)="yAxisDropdownChangeListener($event)">
+              <mat-option *ngFor="let obj of DROPDOWN_ITEMS_Y_AXIS_EXTENDED" [value]="obj.name" disabled="{{obj.disabled}}">{{obj.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 not_responsive">
+      <div class="control-panel-form form-group">
+        <div class="form-control-wrap">
+          <mat-form-field class="settings-select" id="y-axis-scale-select">
+            <mat-label>Linear or Log (Y-scale)</mat-label>
+            <mat-select [(ngModel)]="CURRENT_DROPDOWN_ITEMS_Y_SCALE" (selectionChange)="yScaleDropdownChangeListener($event)">
+              <mat-option *ngFor="let obj of DROPDOWN_ITEMS_Y_SCALE" [value]="obj">{{obj}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 not_responsive">
+      <div class="control-panel-form form-group">
+        <div class="form-control-wrap">
+          <mat-form-field class="settings-select">
+            <mat-label>Normalise Y-axis with Population Size</mat-label>
+            <mat-select [(ngModel)]="CURRENT_MEASURES_DATA_POP_SIZE" (selectionChange)="showPer100kPop($event)">
+              <mat-option *ngFor="let obj of MEASURES_DATA_POP_SIZE" [value]="obj">{{obj}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 not_responsive">
+      <div class="custom-slider">
+        <button id="play-pause-button" class="btn btn-link" matTooltip="Play/Pause" (click)="playPause()" style="float: left!important; margin-top: 9px;">
+          <i class="material-icons play-btn" >{{playPauseButton}}</i>
+        </button>
+        <ng5-slider [(value)]="value"  [options]="options" (valueChange)="valueChange($event)" style="width: 80%;margin:35px 0px 15px;"></ng5-slider>
+      </div>
+    </div>
+
+    <div class="col-xl-1 wwcc-block-between rem-wrap align-start">
+      <div>
+        <button id="reset-countries-btn" type="button" class="btn btn-secondary" (click)="resetToAllCountries($event)">
+          <span class="material-icons">autorenew</span>
+        </button>
+        <button id="config-btn" type="button" class="btn btn-secondary" (click)="open(config)">
+          <span class="material-icons">settings</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #config let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Configure Data & Data Sources</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" validate>
+      <div class="example-container">
+        <div class="row custom-spacer-m-ds" *ngIf="internal">
+          <div class="col-md-6">
+            Data sources for measures data:
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Select measures data source(s)" formControlName="measuresDataSources" multiple>
+                <mat-option *ngFor="let mds of measuresDataSourcesList" [value]="mds" (click)="measuresDataSourcesChangeListener(mds)">{{mds}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            Show imposed and/or lifted NPIs:
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Select imposed and/or lifted NPIs" formControlName="countermeasureRestriction">
+                <mat-option *ngFor="let cr of countermeasureRestrictionList" [value]="cr" (click)="countermeasureRestrictionChangeListener(cr)">{{cr}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            Show NPIs index map bars:
+          </div>
+          <div class="col-md-6">
+            <mat-checkbox color="primary" [checked]= "dataAndDataSourcesConfigs.showSimilarityBars" (change)="showSimilarityBars($event)"><span class="checkbox-font">Show similarity bars</span></mat-checkbox>
+          </div>
+        </div>
+
+        <div class="row custom-spacer-k-ad">
+          <div class="col-md-6">
+            Top K countries to be shown:
+          </div>
+          <div class="col-md-6">
+            <div>
+              <mat-slider
+                color="primary"
+                thumbLabel="true"
+                tickInterval="1"
+                min="5"
+                max="30"
+                [value]="dataAndDataSourcesConfigs.topKAdmins"
+                (change)="onInputADChange($event)">
+              </mat-slider>
+            </div>
+          </div>
+        </div>
+
+        <div class="row custom-spacer-k-cm">
+          <div class="col-md-6">
+            Top K NPIs to be shown:
+          </div>
+          <div class="col-md-6">
+            <div>
+              <mat-slider
+                color="primary"
+                thumbLabel="true"
+                tickInterval="1"
+                min="1"
+                max="18"
+                [value]="dataAndDataSourcesConfigs.topKCm"
+                (change)="onInputCMChange($event)">
+              </mat-slider>
+            </div>
+          </div>
+        </div>
+
+        <div class="row custom-spacer-k-cm">
+        <div class="col-md-6">
+          Grouping NPIs in days:
+        </div>
+        <div class="col-md-6">
+          <div>
+            <mat-slider
+              color="primary"
+              thumbLabel="true"
+              tickInterval="1"
+              min="1"
+              max="14"
+              [value]="dataAndDataSourcesConfigs.kDays"
+              (change)="onInputKDaysChange($event)">
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Set to default click')">Default</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+
+

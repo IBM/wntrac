@@ -1,0 +1,221 @@
+@charset "UTF-8";
+.wwcc-app-root {
+  outline: none;
+}
+
+.wwcc-main {
+  position: relative;
+}
+
+.wwcc-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fb!important;
+}
+
+.wwcc-content {
+  padding: 24px 4px;
+}
+
+.wwcc-content-body {
+  flex-grow: 1;
+}
+
+.popover{
+  max-width: 500px !important;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 1rem !important;
+}
+
+.card-full {
+  height: 100%;
+}
+
+.card-bordered {
+  border: 1px solid #E0E0E0 !important;
+}
+
+.card-inner {
+  padding: 1.25rem;
+}
+
+@media (min-width: 576px) {
+  .card-inner {
+    padding: 1.5rem;
+  }
+}
+
+.wwcc-block-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.align-start {
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+.note-text {
+  font-size: 12px;
+  /*font-style: italic;*/
+  color: #8094ae;
+  display: inline-block;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 15%;
+  height: 100%;
+
+  background-color: black;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+.sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #888888fa;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #474747;
+  text-decoration: none;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 1.8rem;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #8094ae;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color:#444;
+}
+
+div.custom-popup > div.leaflet-popup-content-wrapper {
+  border-radius: 2px;
+  background: #eaeaeacc;
+  font-family: "IBM Plex Sans" !important;
+}
+
+div.custom-popup div.leaflet-popup-tip {
+  width: 4px;
+  height: 4px;
+  padding: 1px;
+  margin: -2px auto 0;
+  transform: rotate(45deg);
+}
+
+p#last-update-text {
+  font-style: normal;
+}
+
+g.hoverlayer g.hovertext path {
+  opacity: 0.85;
+  stroke-width: 0px !important;
+}
+
+g.infolayer g.g-xtitle text.xtitle, g.infolayer g.g-ytitle text.ytitle,
+g.xtick text, g.ytick text {
+  font-family: "IBM Plex Sans" !important;
+}
+
+div.map-legend, div.similarity-legend {
+  line-height: 18px;
+  font: 12px/1.5 "IBM Plex Sans", Helvetica, sans-serif;
+  color: #191919;
+}
+
+div.similarity-legend span{
+  color: #191919;
+  padding-bottom: 1px;
+  margin-left: -6px;
+}
+
+div.map-legend i {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  margin-left: -25px;
+  opacity: 0.7;
+}
+
+div.countermeasure-popup-text {
+  font-size: 10px;
+}
+
+div.popup-region-name {
+  font-weight: bold;
+}
+
+.spacer{
+  margin-bottom: 0.7em;
+}
+
+.nav-link{
+  padding: .5rem 5rem !important;
+  font-weight: 700;
+}
+
+.nav-tabs .nav-link.active
+{
+  color: #818182; border: none; background-color: transparent;
+}
+
+.nav-tabs .nav-link { padding: 1rem 0; font-weight: 700; color: #818182; position: relative; border: none; outline: none; display: inline-flex; align-items: center; }
+
+.mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
+  background-color: #bbb9b3 !important;
+}
+
+

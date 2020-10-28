@@ -1,0 +1,200 @@
+/*!
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+//Set Vars
+$settingsSelectWidth: 100% !important;
+
+//Use Vars
+.settings-select {
+  width: $settingsSelectWidth;
+}
+
+#play-pause-button {
+  float:right;
+  position: relative;
+  //font-size: 20px
+}
+
+.custom-slider {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.grph-trns{
+  transform: rotate(-90deg);
+}
+
+.not-empty-select.mat-selected {
+  color: #333 !important;
+  font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif!important;
+}
+
+.play-btn{
+  color: #34a233;
+}
+
+:host /deep/ .mat-select-value-text {
+  color: #333 !important;
+  font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif!important;
+}
+
+mat-label.ng-star-inserted, mat-option.ng-star-inserted, span.mat-option-text {
+  font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif!important;
+}
+
+div.control-panel-form {
+  margin-bottom: 0px;
+}
+
+div#control-panel-row-container {
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+// We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background: #999;
+    height: 2px;
+  }
+  .custom-slider .ng5-slider .ng5-slider-selection {
+    background: #999;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer {
+    width: 8px;
+    height: 16px;
+    // top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #999;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bubble {
+    bottom: 14px;
+    color: #333 !important;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-limit {
+    font-weight: bold;
+    font-size: 12px;
+    color: #999;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #999;
+    top: -1px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: #999;
+    font-size: 12px;
+  }
+  .mat-expansion-indicator {
+    // position: absolute;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
+  .mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+  }
+  .preview-list { display: flex; flex-wrap: wrap; margin: -0.75rem; }
+
+  .preview-item { padding: 0.75rem; }
+
+  .btn-primary { color: #fff; background-color: #6576ff; border-color: #6576ff; }
+
+  ol, ul { list-style: none; margin: 0; padding: 0; }
+
+  .modal.show{
+    display: block;
+  }
+
+  .modal-dialog {
+    max-width: 850px;
+  }
+}
+
+.example-container {
+}
+
+.custom-spacer-m-ds {
+  margin-top: 10px;
+}
+
+.custom-spacer-k-ad {
+  margin-top: 30px;
+}
+
+.custom-spacer-k-cm {
+  margin-top: 15px;
+}
+
+.button-custom-style {
+  text-align:right;
+  margin-top: 15px;
+}
+
+.checkbox-font{
+  font-size: 12px;
+}
+
+.rem-wrap{
+  white-space: nowrap;
+}
+
+mat-slider {
+  width: 250px;
+}
+
+#reset-countries-btn {
+  height: 30px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+#reset-countries-btn span {
+  font-size: 20px;
+  margin-top: -2px;
+}
+
+#config-btn {
+  height: 30px;
+  margin-top: 5px;
+}
+
+#config-btn span {
+  font-size: 20px;
+  margin-top: -2px;
+}
+
+.not_responsive
+{
+  width: 200px;
+}

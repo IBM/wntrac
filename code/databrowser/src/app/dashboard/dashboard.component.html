@@ -1,0 +1,213 @@
+<!--
+  ~ Copyright 2020 IBM Corporation
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="wwcc-block-between flex-wrap align-start">
+  <div>
+    <h5 id="main-title">
+      Data browser for Worldwide Non-pharmaceutical Interventions Tracker for COVID-19 (WNTRAC)
+    </h5>
+    <div id="home-meta-container">
+      <div class="note-text" id="last-update-text"> Updated: {{updateMetadata('latest_epoch')}} <span></span></div>
+      <div id="meta-buttons-container">
+      <a href="{{landingPageUrl}}" rel="nofollow" target="_blank">
+        <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+                (click)="topBarButtons('wntrac_home', 'link')">
+          WNTRAC Home
+        </button>
+      </a>
+      <a href="{{landingPageUrl}}dataset" rel="nofollow" target="_blank">
+        <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+                (click)="topBarButtons('data', 'link')">
+          Data
+        </button>
+      </a>
+      <a href="{{landingPageUrl}}team" rel="nofollow" target="_blank">
+        <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+                (click)="topBarButtons('credits', 'link')">
+          Credits
+        </button>
+      </a>
+      <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+              ngbPopover="Due to the Novel Coronavirus (COVID-19) outbreak, IBM is providing this interactive dashboard
+               as a service to the public, but this dashboard is not designed or intended to be a medical device or a
+                substitute for professional medical advice, diagnosis, treatment, or judgment.
+
+IBM has compiled COVID-19 data provided by multiple third-party sources including Wikipedia, governmental agencies and
+ other public sources.
+
+These sources update and report COVID-19 data on various regular and irregular schedules, so from time to time there
+ may be discrepancies between COVID-19 data reported here and COVID-19 data reported by individual sources. IBM makes
+ efforts to provide up-to-date and accurate data as available and tries to verify Wikipedia data with data from
+ governmental sources to minimize and correct errors. IBM does not warrant the accuracy, reliability, or completeness
+ of the COVID-19 data. The results of this dashboard are inherently speculative and the appropriate use of the
+  results and decisions made based on the results are the responsibility of the user. IBM shall have no liability
+  with respect to the results and decisions made based on the results. Please send any inquiries about the data
+  presented here at: ww.cc19@ke.ibm.com" (click)="topBarButtons('disclaimer', 'button')">
+        Disclaimer
+      </button>
+      <ng-template #feedbbackPopContent>For issues and feature requests pertaining to data browser please email us at
+        ww.cc19@ke.ibm.com. If you have any questions or issues regarding the underlying data, please refer
+        to <a href="{{landingPageUrl}}contribute" rel="nofollow" target="_blank" (click)="topBarButtons('feedback_wntrac_contribute',
+         'link')">this page</a></ng-template>
+      <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+              [ngbPopover]="feedbbackPopContent" (click)="topBarButtons('feedback', 'button')">
+        Feedback
+      </button>
+      </div>
+    </div>
+
+  </div>
+  <div class="row text-center g-1">
+    <div class="col-4 spacing">
+      <div class="profile-stats">
+        <span class="amount" *ngIf="updateMetadata('territories') !== '-'">{{updateMetadata('territories') | number}}</span>
+        <span class="amount" *ngIf="updateMetadata('territories') === '-'">-</span>
+        <span class="sub-text">Territories Covered</span>
+      </div>
+    </div>
+    <div class="col-4 spacing">
+      <div class="profile-stats">
+        <span class="amount" *ngIf="updateMetadata('total_events') !== '-'">{{updateMetadata('total_events') | number}}</span>
+        <span class="amount" *ngIf="updateMetadata('total_events') === '-'">-</span>
+        <span class="sub-text">Total No. of Events</span>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="profile-stats">
+        <span><p></p></span>
+        <ng-template #popContent><div class="popover-body" [innerHTML]=popOverMsg></div></ng-template>
+        <ng-template #popTitle><div class="popover-title"><b>NPI events for the past {{numberOfDaysToShowPopover}} days
+        </b></div></ng-template>
+        <button type="button" class="btn btn-light" placement="bottom-right" [ngbPopover]="popContent"
+                [popoverTitle]="popTitle" [disabled]="disabledButton" (click)="topBarButtons('notifications', 'button')">
+          <mat-icon matBadge={{noOfNotifications}} matBadgeColor="accent">notifications</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ngb-tabset [destroyOnHide]="false" (tabChange)="onTabChange($event)">
+
+  <ngb-tab title="Overview">
+    <ng-template ngbTabContent>
+      <div class="spacer"><p></p></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <app-control-panel [covid19OutcomeData]="covid19OutcomeData"
+                             [controlAttributes]="controlAttributes"
+                             (selectedAttribute)="onSelectedAttribute($event)"
+                             *ngIf="(covid19OutcomeData && covid19OutcomeData['cm_data'])">
+          </app-control-panel>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <app-map *ngIf="(covid19OutcomeData && covid19OutcomeData['cm_data'])"
+                   [geoJSONObject]="geoJSONObject"
+                   [markers]="markers"
+                   [showGeoJSON]="true"
+                   [noClustering]="true"
+                   [polyLines]="polyLines"
+                   (selectedAttribute)="onSelectedAttribute($event)"
+                   [controlAttributes]="controlAttributes"
+                   [chartSelectedTerritory]="chartSelectedTerritory"
+                   [countermeasureSimilarityBars]="countermeasureSimilarityBars"
+                   [admin1GeoJSONObject]="admin1GeoJSONObject"
+                   [zoomCenterObj]="zoomCenterObj"
+                   [dict]="covid19OutcomeData.dict"></app-map>
+        </div>
+        <div id="graph-column" class="col-md-7">
+          <app-graph [covid19OutcomeData]="covid19OutcomeData"
+                     [controlAttributes]="controlAttributes"
+                     (selectedAttribute)="onSelectedAttribute($event)"
+                     *ngIf="(covid19OutcomeData && covid19OutcomeData['cm_data'])">
+          </app-graph>
+        </div>
+      </div>
+
+
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab>
+    <ng-template ngbTabTitle>How to</ng-template>
+    <ng-template ngbTabContent>
+
+      <div class="nk-wrap ">
+
+        <div class="nk-content ">
+          <div class="container-fluid">
+            <div class="nk-content-body">
+              <div class="nk-block-between flex-wrap g-1 align-start">
+              </div>
+              <div class="nk-block">
+                <div class="row g-5">
+                  <div class="col-xl-7">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <video width="90%" height="90%" controls (play)="videoPlayStatus()">
+                        <source src="../../../assets/video/coviddashboard.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <br>
+                    <h5>Summary</h5>
+                    <p>
+                      We have created the Worldwide Non-pharmaceutical Interventions for COVID-19 (WNTRAC), a comprehensive dataset of non-pharmaceutical interventions that represents the non-pharmaceutical interventions to stop the transmission of COVID-19 implemented by governments across 359 geographical regions (countries, dependent territories & special areas of geographical interest) in the world.
+                    </p>
+                    <p>
+                      Example non-pharmaceutical interventions include social distancing, travel bans/restrictions, school closing and the introduction of actions to manage the economic impact caused by the COIVD-19 pandemic. However these non-pharmaceutical interventions vary significantly on when and how they have been implemented and decision makers at all levels are working diligently to determine the best time to lift the restrictions while minimizing any negative impact made towards controlling the disease.
+                    </p>
+                    <p>
+                      The Worldwide Non-pharmaceutical Interventions Tracker for COVID-19 dataset has been compiled by using wikipedia articles related to the COVID-19 pandemic and additionally referencing to news articles and government executive orders (for U.S states) when available. There are a total of 15 non-pharmaceutical interventions types recorded and we have created a taxonomy to assign a numerical measure to these non-pharmaceutical interventions
+                    </p>
+
+                    <ng-template #config let-modal>
+                      <div class="modal-header">
+                        <h5 class="modal-title">Configure Data & Data Sources</h5>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Due to the Novel Coronavirus (COVID-19) outbreak, IBM is providing this interactive dashboard as a service to the public, but this dashboard is not designed or intended to be a medical device or a substitute for professional medical advice, diagnosis, treatment, or judgment.  </p>
+                        <p>IBM has compiled COVID-19 data provided by multiple third-party sources including  Wikipedia, governmental agencies and other public sources.  </p>
+                        <p>
+                          These sources update and report COVID-19 data on various regular and irregular schedules, so from time to time there may be discrepancies between COVID-19 data reported here and COVID-19 data reported by individual sources.
+                          IBM makes efforts to provide up-to-date and accurate data as available and tries to verify Wikipedia data with data from governmental sources to minimize and correct errors. IBM does not warrant the accuracy, reliability, or completeness of the COVID-19 data.  Please send any inquiries about the data presented here</p>
+                      </div>
+                    </ng-template>
+                  </div>
+                  <div class="col-xl-5"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+
+
+
+
+

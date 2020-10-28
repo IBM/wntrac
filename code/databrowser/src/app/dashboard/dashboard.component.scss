@@ -1,0 +1,108 @@
+/*!
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+h5#main-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.setting-item {
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: white;
+  padding: 10px 15px 8px 20px;
+  border: none;
+  margin-top: -20px;
+}
+
+.setting-item:hover {
+  background-color: #474747;
+}
+
+
+.text-center {
+  text-align: center !important;
+}
+
+
+.profile-stats .amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #090909;
+}
+
+.sub-text{
+  display: block;
+  font-size: 13px;
+  color: #74848a;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.btn-outline-secondary {
+  border: none !important;
+  font-size: 0.8rem !important;
+}
+
+
+#side-panel-glyph-header {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: white;
+  padding-left: 10px;
+}
+[data-toggle="collapse"] .fa:before {
+  content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+  content: "\f13a";
+}
+
+.mat-expansion-panel{
+  box-shadow: none !important;
+}
+
+.spacing{
+  padding-left: 3em;
+}
+
+@media (min-width: 768px) {
+  #graph-column {
+    padding-left: 0.2rem;
+  }
+}
+
+.popover-body {
+  max-height: 500px;
+  width: 300px;
+  overflow-y: auto;
+  //white-space:pre-wrap;
+}
+
+.popover-title {
+  text-align: center;
+}
+
+#meta-buttons-container {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#home-meta-container {
+  margin-bottom: 10px;
+}
