@@ -8,3 +8,5 @@ Please follow the links below to build and launch the three components.
 1. [Processing Pipeline](pipeline/)
 2. [WNTRAC Curator](curator/)
 3. [Data browser](databrowser/)
+
+If you happen to use the code in your work, we would appreciate if you could acknowledge our contribution by referencing the paper above.
