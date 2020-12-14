@@ -3,6 +3,7 @@
 
 | Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Release&nbsp;date&nbsp; | Release notes |
 | :--- | :--- | :---  |
+| [2020-12-07](../../../raw/master/data/ibm-wntrac-2020-12-07.zip) | Dec 07, 2020 | WNTRAC dataset updated with NPI events until 2020-12-07. 21 NPI events registered since last update. |
 | [2020-11-30](../../../raw/master/data/ibm-wntrac-2020-11-30.zip) | Nov 30, 2020 | WNTRAC dataset updated with NPI events until 2020-11-30. 21 NPI events registered since last update. |
 | [2020-11-23](../../../raw/master/data/ibm-wntrac-2020-11-23.zip) | Nov 23, 2020 | WNTRAC dataset updated with NPI events until 2020-11-23. 101 NPI events registered since last update. 42 removed addressing issues [#7](https://github.com/IBM/wntrac/issues/7) and [#8](https://github.com/IBM/wntrac/issues/8) |
 | [2020-11-10](../../../raw/master/data/ibm-wntrac-2020-11-10.zip) | Nov 11, 2020 | WNTRAC dataset updated with NPI events until 2020-11-10. 97 NPI events registered since last update. |
