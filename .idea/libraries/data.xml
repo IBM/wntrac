@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="data">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-10-13.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-08-18.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-07-24.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-09-02.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-07-08.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-11-23.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-11-10.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-08-08.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-09-23.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-09-15.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data/ibm-wntrac-2020-10-31.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
