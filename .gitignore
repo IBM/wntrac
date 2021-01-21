@@ -137,3 +137,5 @@ paper.pdf
 *.bbl
 *.blg
 
+.idea/
+
