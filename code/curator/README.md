@@ -12,8 +12,20 @@ docker build -t wntrac .
 ```
 Docker will take care of production build of angular app, and setting the right environment for flask
 
-## Run docker container
+## Run docker containers
 
+### Postgres docker container
+Before running the above built wntrac image, run the below command in your machine from the terminal to pull PSQL from docker-hub.
+```bash
+docker run -d --name postgresql-wntrac -p 5432:5432 -e POSTGRES_PASSWORD=pass postgres
+```
+Ensure the password you provide in the `POSTGRES_PASSWORD` field is similar to what is in the `sample.env`.
+
+The port forwarding ensures that you can access the postgres server in the container from your local machine (Change the port if you have postgres running local).
+
+Access the postgres database with e.g. [pgAdmin](https://www.pgadmin.org/download/), and create a local db with the name `ibmclouddb`.
+
+### Wntrac docker container
 Before you run, you will need database credentials and path to data folder (for crawled pages). Please add these details to `.env` file
 
 The following command runs the server on port 80. 

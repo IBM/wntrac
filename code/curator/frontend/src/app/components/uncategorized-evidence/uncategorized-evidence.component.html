@@ -1,0 +1,46 @@
+<!--/**
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+
+<div *ngIf="loading" class="loading-container">
+  <gt-loading></gt-loading>
+</div>
+
+<div *ngIf="!loading" class="container">
+  <div *ngIf="uncategorized.length > 0; else candidateEvidencesEmptyState">
+    <div *ngFor="let a of [documentText[0]]" class="scrollable-textbox-container">
+      <h1><a href="{{a?.doc_url}}" target="_blank">{{a?.doc_url}}</a></h1>
+      <div title="updates on page reload">
+        Total Sentences: {{a?.doc_status.total}}, Discarded Sentences: {{a?.doc_status.discard}}
+        ({{((a?.doc_status.discard / a?.doc_status.total) * 100).toFixed(2)}}%), Matched
+        Evidences:  {{a?.doc_status.matching_evidence}}   (updates on page reload)
+      </div>
+      <br/>
+      <textarea class="scrollable-textbox" name="note" id="doc_textarea" readonly>{{a?.text}}</textarea>
+    </div>
+    <div class="evidences-container">
+      <div *ngFor="let evidence of uncategorized; let i = index" class="item-container">
+        <app-generic-evidence [evidence]="evidence" (removeItem)="onRemove(i)" [verification]="false"></app-generic-evidence>
+      </div>
+    </div>
+  </div>
+  <ng-template #candidateEvidencesEmptyState>
+    <div id="candidate-evidence-empty-state">No Candidate Evidences</div>
+  </ng-template>
+  <div class="reload-button-container">
+    <button (click)="reloadPage()" mat-raised-button color="primary">Reload latest assignment</button>
+  </div>
+</div>

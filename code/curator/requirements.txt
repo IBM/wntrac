@@ -2,5 +2,6 @@ Flask==1.1.1
 Flask-SQLAlchemy==2.4.1
 ibm-cos-sdk==2.6.2
 flask-cors==3.0.8
+pymysql==0.9.3
+flasgger==0.9.4
 pandas==1.0.3
-psycopg2-binary

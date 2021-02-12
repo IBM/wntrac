@@ -16,6 +16,7 @@ import sqlalchemy as db
 import os
 import pandas as pd
 from config import *
+import uuid
 
 import sqlalchemy.dialects.postgresql as db_dialect
 
@@ -46,7 +47,7 @@ def get_table_data(table_name, filter_dict=None, limit=20, offset=0, random=Fals
     # Generic function to get table data and perform basic filtering, limit, offset, etc
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         db_table = db.Table(table_name, metadata, autoload=True, autoload_with=engine)
         query = db.select([db_table])
 
@@ -61,9 +62,9 @@ def get_table_data(table_name, filter_dict=None, limit=20, offset=0, random=Fals
         if orderby_dict and not random:
             for key in orderby_dict.keys():
                 if orderby_dict[key] == 'asc':
-                    query = query.order_by(db_table.c[key])
+                    query =  query.order_by(db_table.c[key])
                 if orderby_dict[key] == 'desc':
-                    query = query.order_by(db.desc(db_table.c[key]))
+                    query =  query.order_by(db.desc(db_table.c[key]))
 
         ResultProxy = connection.execute(query)
         ResultSet = ResultProxy.fetchall()
@@ -83,7 +84,7 @@ def update_to_table(table_name, table_key, data_to_update):
 
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         CandidateEvidence = db.Table(table_name, metadata, autoload=True, autoload_with=engine)
 
         query = CandidateEvidence.update(). \
@@ -118,7 +119,7 @@ def insert_to_table(table_name, data):
     # Generic function to insert to a table
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         db_table = db.Table(table_name, metadata, autoload=True, autoload_with=engine)
 
         insert_stmt = db_dialect.insert(db_table).values(data)
@@ -135,7 +136,7 @@ def random_unassigned_document():
     # Function to assign a document to a user who needs to be assigned. It also deletes all stale assignments
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         CandidateEvidence = db.Table('candidateevidence', metadata, autoload=True, autoload_with=engine)
         Evidence = db.Table('evidence', metadata, autoload=True, autoload_with=engine)
         sentence_context = db.Table('sentencecontext', metadata, autoload=True, autoload_with=engine)
@@ -151,12 +152,12 @@ def random_unassigned_document():
         ## get country which has atleast one non-discarded candidateEvidence which is not in evidence
         query = db.select([CandidateEvidence.c.doc_url]).where(
             ~db.exists().where(CandidateEvidence.c.evid_id == Evidence.c.evid_id)
-        ).where(CandidateEvidence.c.discard.isnot(True)  ## TODO: fix this to discard !=1
+        ).where(CandidateEvidence.c.discard.isnot(True)   ## TODO: fix this to discard !=1
                 ).where(
             ~db.exists().where(CandidateEvidence.c.doc_url == annotatorassignment.c.doc_url)
         ).limit(1)
 
-        result = query_to_result_dict(query, connection)
+        result = query_to_result_dict(query,connection)
 
         if len(result) == 0:
             return 'No more candidate evidence to verify', 200
@@ -167,7 +168,7 @@ def random_unassigned_document():
         connection.close()
         engine.dispose()
 
-        return doc_url, 200
+        return doc_url , 200
 
 
 def unassosiated_evidence(filter_dict=None, limit=20, offset=0, random=True, mode='random', anno_id=None):
@@ -180,8 +181,8 @@ def unassosiated_evidence(filter_dict=None, limit=20, offset=0, random=True, mod
     #     )
     # '''
 
-    if mode == 'same_country':
-        # override randommess to false
+    if mode =='same_country':
+        #override random=False
         random = False
 
     ## Get the country for which anno_id has submitted before
@@ -198,12 +199,13 @@ def unassosiated_evidence(filter_dict=None, limit=20, offset=0, random=True, mod
         for current_assignment in current_assignments:
             unassigned = _unassociated_candidateevidence(current_assignment['doc_url'],
                                                          filter_dict, limit, offset, random)
-            if len(unassigned) > 0:
+            if len(unassigned)>0:
                 return unassigned
 
         else:
             doc_url, status = random_unassigned_document()
             if anno_id:
+
                 engine = db.create_engine(
                     os.environ.get('DB_URI', None))
                 with engine.connect() as connection:
@@ -222,18 +224,18 @@ def unassosiated_evidence(filter_dict=None, limit=20, offset=0, random=True, mod
                     'doc_url': doc_url,
                     'last_updated': 'NOW()'
                 })
-        unassigned = _unassociated_candidateevidence(doc_url, filter_dict, limit, offset, random)
+
+        unassigned = _unassociated_candidateevidence(doc_url,filter_dict, limit, offset, random)
 
     return unassigned
 
 
-def _unassociated_candidateevidence(doc_url, filter_dict=None, limit=20, offset=0, random=True, mode=''):
+def _unassociated_candidateevidence(doc_url, filter_dict=None,limit=20,offset=0,random=True,mode=''):
     # Function to get unassociated candidate evidence using different modes
-
     engine = db.create_engine(os.environ.get('DB_URI', None))  # TODO: Fix with pooling
 
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         CandidateEvidence = db.Table('candidateevidence', metadata, autoload=True, autoload_with=engine)
         Evidence = db.Table('evidence', metadata, autoload=True, autoload_with=engine)
         sentence_context = db.Table('sentencecontext', metadata, autoload=True, autoload_with=engine)
@@ -253,7 +255,7 @@ def _unassociated_candidateevidence(doc_url, filter_dict=None, limit=20, offset=
             CandidateEvidence.c.begin_offset
         )
 
-        result = query_to_result_dict(query, connection)
+        result = query_to_result_dict(query,connection)
 
         if filter_dict:
             for key in filter_dict.keys():
@@ -278,7 +280,7 @@ def _unassociated_candidateevidence(doc_url, filter_dict=None, limit=20, offset=
     return result
 
 
-def get_event(type, country, date, value, restriction, get_evidences=False):
+def get_event(type, country, date, value, restriction,get_evidences=False):
     # Get an event based filtered on provided params
     '''
     :param type:
@@ -287,6 +289,7 @@ def get_event(type, country, date, value, restriction, get_evidences=False):
     :param value:
     :return:
     '''
+
     '''
         select * 
         from CandidateEvidence ec,  Evidence
@@ -300,7 +303,7 @@ def get_event(type, country, date, value, restriction, get_evidences=False):
 
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         CandidateEvidence = db.Table('candidateevidence', metadata, autoload=True, autoload_with=engine)
         Event = db.Table('event', metadata, autoload=True, autoload_with=engine)
 
@@ -309,15 +312,14 @@ def get_event(type, country, date, value, restriction, get_evidences=False):
         ).where(
             Event.c.country == country
         ).where(
-            Event.c.date == (date if date != 'None' else None)
+            Event.c.date ==  (date if date!='None' else None)
         ).where(
             Event.c.value == value
         ).where(
-            Event.c.restriction == (restriction if restriction != 'None' else None)
+            Event.c.restriction == (restriction if restriction!='None' else None)
         )
 
         try:
-
             result = query_to_result_dict(query, connection)
 
             if len(result) > 0:
@@ -336,15 +338,15 @@ def get_event(type, country, date, value, restriction, get_evidences=False):
         except:
             print("unable to print real sql query")
 
-
         finally:
             connection.close()
             engine.dispose()
 
-    return result, matched_evidences
+
+    return result , matched_evidences
 
 
-def add_to_evidence(candidate_data, event_id, check_to_update=False, anno_id=''):
+def add_to_evidence(candidate_data, event_id, check_to_update=False,anno_id=''):
     '''
     :param evidence_id:
     :param event_id:
@@ -367,46 +369,36 @@ def add_to_evidence(candidate_data, event_id, check_to_update=False, anno_id='')
         engine = db.create_engine(os.environ.get('DB_URI', None))
         with engine.connect() as connection:
             # TODO: take care of sql injection
-            query_str = f'''
+            query_str =f'''
                                 select * 
-                                from evidence e 
+                                from wwcc.evidence e 
                                 where 
                                     (e.even_id = '{event_id}') and
                                     (e.evid_id = '{candidate_data['evid_id']}') and 
                                     (e.sent_id = '{candidate_data['sent_id']}') and 
-                                    (e.doc_url = '{candidate_data['doc_url']}') and 
+                                    (e.doc_url = '{candidate_data['doc_url'].replace("'","''").replace("%","%%")}') and 
                                     (e.crawl_id = '{candidate_data['crawl_id']}') and 
                                     (e.crawl_date = '{candidate_data['crawl_date']}')  and 
                                     (e.begin_offset = {candidate_data['begin_offset']}) and 
                                     (e.end_offset = {candidate_data['end_offset']}) and 
-                                    (e.citation_url = '{candidate_data['citation_url'].replace("'", "''").replace("%",
-                                                                                                                  "%%")}') and 
-                                    (e.anno_provided_url ='{candidate_data['anno_provided_url'].replace("'",
-                                                                                                        "''").replace(
-                "%", "%%")}') and 
-                                    (e.fine_grained_location ='{candidate_data['fine_grained_location'].replace("'",
-                                                                                                                "''").replace(
-                "%", "%%")}') and 
+                                    (e.citation_url = '{candidate_data['citation_url'].replace("'","''").replace("%","%%")}') and 
+                                    (e.anno_provided_url ='{candidate_data['anno_provided_url'].replace("'","''").replace("%","%%")}') and 
+                                    (e.fine_grained_location ='{candidate_data['fine_grained_location'].replace("'","''").replace("%","%%")}') and 
                                     (e.type ='{candidate_data['type']}') and 
-                                    (e.country ='{candidate_data['country'].replace("'", "''").replace("%",
-                                                                                                       "%%")}') and 
+                                    (e.country ='{candidate_data['country'].replace("'","''").replace("%","%%")}') and 
                                     (e.date ='{candidate_data['date']}') and 
-                                    (e.value ='{candidate_data['value'].replace("'", "''").replace("%", "%%")}') and 
-                                    (e.other_value ='{candidate_data['other_value'].replace("'", "''").replace("%",
-                                                                                                               "%%")}') and 
-                                    (e.level_of_enforcement ='{candidate_data['level_of_enforcement'].replace("'",
-                                                                                                              "''").replace(
-                "%", "%%")}') and 
-                                    (e.level_of_confidence ='{candidate_data['level_of_confidence'].replace("'",
-                                                                                                            "''").replace(
-                "%", "%%")}') and 
+                                    (e.value ='{candidate_data['value'].replace("'","''").replace("%","%%")}') and 
+                                    (e.other_value ='{candidate_data['other_value'].replace("'","''").replace("%","%%")}') and 
+                                    (e.level_of_enforcement ='{candidate_data['level_of_enforcement'].replace("'","''").replace("%","%%")}') and 
+                                    (e.level_of_confidence ='{candidate_data['level_of_confidence'].replace("'","''").replace("%","%%")}') and 
                                     (e.restriction ='{candidate_data['restriction']}')
 
                     '''
             ResultProxy = engine.execute(query_str)
+            #ResultProxy = connection.execute(query)
             ResultSet = ResultProxy.fetchall()
 
-            if len(ResultSet) > 0:
+            if len(ResultSet)>0:
                 update_evidence = False
 
             connection.close()
@@ -418,15 +410,15 @@ def add_to_evidence(candidate_data, event_id, check_to_update=False, anno_id='')
             data=evidence_dict
         )
 
-        return evidence_table_data, update_evidence
+        return evidence_table_data , update_evidence
     else:
-        return evidence_dict, update_evidence
+        return evidence_dict , update_evidence
 
 
-def addNewValue(table_name, type, newValue, tags=False, official=False):
+def addNewValue(table_name, type, newValue, tags = False, official = False):
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         db_table = db.Table(table_name, metadata, autoload=True, autoload_with=engine)
         if not tags:
             query = f'''INSERT into wwcc.eventvalue (eventtype_id, value, official_value) 
@@ -437,8 +429,7 @@ def addNewValue(table_name, type, newValue, tags=False, official=False):
             entries = []
             query = "INSERT into wwcc.eventvalue (eventtype_id, value, official_value)\nVALUES"
             for tag in tags:
-                entries.append(
-                    f'''((select eventtype_id from wwcc.eventtype where type = '{type}'), '{tag}', {official})''')
+                entries.append(f'''((select eventtype_id from wwcc.eventtype where type = '{type}'), '{tag}', {official})''')
             query = query + ", \n".join(entries) + "\n"
             query = query + '''ON CONFLICT DO NOTHING'''
 
@@ -451,9 +442,9 @@ def addNewValue(table_name, type, newValue, tags=False, official=False):
 
 
 def search_eventtype():
-    engine = db.create_engine(os.environ.get('DB_URI', None))
+    engine = db.create_engine(os.environ.get('DB_URI', None))  # 'READ THIS FROM ENVIRONMENT')
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         eventtype = db.Table('eventtype', metadata, autoload=True, autoload_with=engine)
         eventvalue = db.Table('eventvalue', metadata, autoload=True, autoload_with=engine)
 
@@ -483,26 +474,24 @@ geo = geo.applymap(lambda x: '' if str(x) == 'nan' else x)
 
 def search_country(search_term=''):
     filtered = geo[
-        (geo['code'].apply(lambda x: search_term in str(x).lower() if x else False)) | (
-            geo['country'].apply(lambda x: search_term in str(x).lower() if x else False)) | (
-            geo['URL'].apply(lambda x: search_term in str(x).lower() if x else False))] if len(search_term) > 0 else geo
+        (geo['code'].apply(lambda x: search_term in str(x).lower() if x else False)) |     (geo['country'].apply(lambda x: search_term in str(x).lower() if x else False ))  |    (geo['URL'].apply(lambda x: search_term in str(x).lower() if x else False )) ]  if len(search_term) > 0 else geo
 
     return filtered.to_dict(orient='records')
 
 
-def document_context_by_offset(sent_id=None, sentences_before_offset=5, sentences_after_offset=5):
+def document_context_by_offset(sent_id=None,sentences_before_offset=5,sentences_after_offset=5):
     engine = db.create_engine(os.environ.get('DB_URI', None))
 
     with engine.connect() as connection:
-        metadata = db.MetaData()
+        metadata = db.MetaData(schema="wwcc")
         CandidateEvidence = db.Table('candidateevidence', metadata, autoload=True, autoload_with=engine)
 
         query = db.select([CandidateEvidence]
                           ).where(CandidateEvidence.c.sent_id == sent_id)
 
-        result = query_to_result_dict(query, connection)
+        result = query_to_result_dict(query,connection)
 
-        if len(result) < 1:
+        if len(result) <1:
             return 'sent_id not found', 400
 
         begin_offset = result[0]['begin_offset']
@@ -523,7 +512,7 @@ def document_context_by_offset(sent_id=None, sentences_before_offset=5, sentence
             int(sentences_before_offset)
         )
 
-        result = query_to_result_dict(query, connection)[::-1]
+        result = query_to_result_dict(query,connection)[::-1]
 
         # get sentences_after_offset
         query = db.select([CandidateEvidence]
@@ -539,20 +528,36 @@ def document_context_by_offset(sent_id=None, sentences_before_offset=5, sentence
             sentences_after_offset
         )
 
-        result.extend(query_to_result_dict(query, connection))
+        result.extend(query_to_result_dict(query,connection))
 
         connection.close()
         engine.dispose()
 
-        return result, 200
+        return result , 200
 
 
 def get_text(crawl_id, doc_url):
     # Get wiki text which was crawled and process. It should be in data folder
-    data_folder = os.environ.get('DATA_FOLDER', 'data')
-    doc_name = doc_url.split('title=')[-1].split("&")[0]
-    file = f"{data_folder}/crawl_{crawl_id}/doc_{doc_name}.csv"
-    return pd.read_csv(file).text[0]
+    if 'title' in doc_url:
+        doc_name = doc_url.split('title=')[-1].split("&")[0]
+    else:
+        ## older format
+        doc_name = doc_url.split('/')[-1]
+
+    key = f"crawl_{crawl_id}/doc_{doc_name}.csv"
+    tmp_file = f"/tmp/crawl_{crawl_id}***doc_{doc_name}.csv"
+
+    try:
+        s3_client.download_file(
+            bucket,
+            key,
+            tmp_file
+        )
+    except:
+        return "Text not found in COS. " \
+               "Please go to " + str(doc_url)
+
+    return pd.read_csv(tmp_file).text[0]
 
 
 def doc_url_status(doc_url):
@@ -566,14 +571,14 @@ def doc_url_status(doc_url):
                                 FROM
                                 wwcc.candidateevidence
                                 where
-                                doc_url = '{doc_url.replace("'", "''")}'
+                                doc_url = '{doc_url.replace("'","''")}'
                                 ) as total,
                                 (
                                     select count( *) as discard
                                 FROM
                                 wwcc.candidateevidence
                                 where
-                                doc_url = '{doc_url.replace("'", "''")}'
+                                doc_url = '{doc_url.replace("'","''")}'
                                           and discard = '1'
                                 ) as discard,
                                 (
@@ -581,12 +586,13 @@ def doc_url_status(doc_url):
                                 FROM
                                 wwcc.evidence
                                 where
-                                doc_url = '{doc_url.replace("'", "''")}'
+                                doc_url = '{doc_url.replace("'","''")}'
                                 ) as matching_evidence
                 ''')
 
         count = results.first()
-        result = {k: v for k, v in zip(['total', 'discard', 'matching_evidence'], count)}
+        result = {k:v for k,v in zip(['total','discard','matching_evidence'],count)}
+
         connection.close()
         engine.dispose()
 
@@ -595,21 +601,41 @@ def doc_url_status(doc_url):
     return None
 
 
-def get_softmatch(geo='', old_id=''):
+def get_softmatch(geo = '', old_id = ''):
     query_str = f'''
             select *
-            from wwcc.evidence
-            where country = '{geo.replace("'", "''")}'
-            order by date, even_id
+            from wwcc.candidateevidence
+            where
+                doc_url='https://en.wikipedia.org/w/index.php?title=COVID-19_pandemic_in_{geo}&oldid={old_id}'
+                and  ( event_id != NULL or event_id != '')
             '''
 
     engine = db.create_engine(os.environ.get('DB_URI', None))
     with engine.connect() as connection:
-        result = query_to_result_dict(query_str, connection)
+        result = query_to_result_dict(query_str,connection)
         connection.close()
         engine.dispose()
 
     return result
+
+
+def create_event(country, type, value, date, restriction):
+    even_uuid = str(uuid.uuid1())
+
+    event_dict = {}
+    event_dict['even_id'] = even_uuid
+    event_dict['type'] = type
+    event_dict['country'] = country
+    event_dict['date'] = date
+    event_dict['value'] = value
+    event_dict['restriction'] = restriction
+
+    event_table_updated = insert_to_table(
+        table_name='event',
+        data=event_dict
+    )
+
+    return even_uuid
 
 
 evidence_and_CandidateEvidence_overlap = [
