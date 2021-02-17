@@ -20,10 +20,12 @@ import pandas as pd
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 s3_client = ibm_boto3.client(service_name='s3',
-    ibm_api_key_id=  os.environ.get('API_KEY', None)  ,
-    ibm_auth_endpoint="https://iam.ng.bluemix.net/oidc/token",
-    config=Config(signature_version='oauth'),
-    endpoint_url= 'https://s3-api.us-geo.objectstorage.softlayer.net'
-)
+                             ibm_api_key_id=  os.environ.get('IBM_API_KEY', None)  ,
+                             ibm_auth_endpoint="https://iam.ng.bluemix.net/oidc/token",
+                             config=Config(signature_version='oauth'),
+                             endpoint_url= 'https://s3-api.us-geo.objectstorage.softlayer.net'
+                             # use networklayer when using watson studio
+                             #'https://s3-api.us-geo.objectstorage.service.networklayer.com'
+                             )
 
 bucket= os.environ.get('BUCKET_NAME')

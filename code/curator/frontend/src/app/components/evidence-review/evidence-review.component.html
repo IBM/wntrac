@@ -1,0 +1,109 @@
+<!--/**
+ * Copyright 2020 IBM Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+
+<div *ngIf="loading" class="loading-container">
+  <gt-loading></gt-loading>
+</div>
+
+<div *ngIf="!loading" class="container">
+  <div id="filter-container">
+    <span style="font-size: 1rem;">Filter on evidences:</span>
+    <div class="form-wrap" [formGroup]="evidenceFilterForm">
+      <mat-form-field>
+        <input type="text"
+               placeholder="Region (ISO code)"
+               aria-label="country"
+               matInput
+               formControlName="country"
+               [matAutocomplete]="autoCountry"
+        >
+        <mat-autocomplete #autoCountry="matAutocomplete">
+          <mat-option *ngFor="let option of filteredCountries | async" [value]="option.code" class="dropDownOptions">
+            {{option.country}} ({{option.code}})
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Event Type</mat-label>
+        <mat-select (selectionChange)="updateEventValue()" formControlName="type">
+          <mat-option *ngFor="let option of types" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="eventTypeValues.length > 0; else inputBox">
+        <mat-label>Event Value</mat-label>
+        <mat-select formControlName="value">
+          <mat-option *ngFor="let option of eventTypeValues" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-template #inputBox>
+        <mat-form-field>
+          <mat-label>Event Value</mat-label>
+          <input type="text"
+                 placeholder="Event Value"
+                 aria-label="value"
+                 matInput
+                 formControlName="value"
+          >
+        </mat-form-field>
+      </ng-template>
+
+      <mat-form-field>
+        <mat-label>Restriction</mat-label>
+        <mat-select formControlName="restriction">
+          <mat-option value="1">Imposed</mat-option>
+          <mat-option value="0">Relieved</mat-option>
+          <mat-option value="2">Extended</mat-option>
+          <mat-option value="-"></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="date"/>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-icon-button (click)="filterEvidences(false)" aria-label="Apply Filter">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button (click)="resetFilters()" aria-label="Reset Filter">
+        <mat-icon>autorenew</mat-icon>
+      </button>
+    </div>
+  </div>
+  <h4 *ngIf="evidences.length > 0; else noSearchResult">Results</h4>
+  <div #searchResultsContainer class="search-results-container">
+    <ng-template #noSearchResult>
+      <h4>No search result found</h4>
+    </ng-template>
+    <div *ngFor="let evidence of paginatedEvidences; let i = index" class="item-container">
+      <app-generic-evidence [evidence]="evidence" [verification]="true"
+                            [elementIndex]="i" (updateEvidenceEntry)="updateAffectedEvidence($event)">
+      </app-generic-evidence>
+    </div>
+  </div>
+  <mat-paginator [pageIndex]="pageIndex" [length]="numberOfEvidences"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[5, 10, 25, 50]" (page)="updateEvidencesList($event)">
+  </mat-paginator>
+</div>

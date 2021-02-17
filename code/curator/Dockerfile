@@ -15,37 +15,55 @@
 # Pull base image
 FROM python:3.7.7-slim
 
-# Maintainer
-MAINTAINER "Piyush Madan <Piyush.Madan1 at ibm.com>"
-
 # update the packages in the base image
 RUN apt-get update
 # since we moved to slim version of docker image, we need to install neccessary packages
-RUN apt install -y gcc libmagic-dev
+RUN  apt-get update && apt install -y gcc libmagic-dev
 
+# Maintainer
+MAINTAINER "Piyush Madan <Piyush.Madan1@ibm.com">
 
 # install requirements.txt
-# RUN pip install psycopg2-binary  #for postgresql
+RUN pip install Flask
+RUN pip install psycopg2-binary  #for postgresql
+RUN apt-get update
+RUN python --version
 COPY ./requirements.txt /usr/src/curation/requirements.txt
 RUN pip install -r /usr/src/curation/requirements.txt
 
-COPY . /usr/src/curation
 
-# Build angular app for production
-WORKDIR /usr/src/curation/client
-RUN apt-get install -y npm  nodejs
+# Adding HTTPS  ## TODO: Can be removed if using Cloudfoundry / IBM Cloud to deploy
+RUN apt-get install -y openssl
+RUN pip install pyopenssl
+RUN mkdir /usr/self_cert
+RUN openssl req -x509 -newkey rsa:4096 -nodes -out /usr/self_cert/cert.pem -keyout /usr/self_cert/key.pem -days 365 -subj "/C=US/ST=Cambridge/L=Cambridge/O=IBM/OU=IBM/CN=ibm.com"
+
+RUN apt-get install -y npm
+RUN apt-get install -y nodejs
 RUN npm install -g @angular/cli
 
-RUN npm update
-RUN export NODE_OPTIONS="--max_old_space_size=8096"
-RUN npm run ng -- build --prod --progress=false --aot=true --vendor-chunk
 
-RUN ls /usr/src/curation/client/dist
-
-# Prepare flask app to run
+# working directory
 WORKDIR /usr/src/curation
-ENV  FLASK_APP app.py
-ENV  FLASK_ENV production
-CMD python -m  flask run --host=0.0.0.0 --port 80
+
+COPY . /usr/src/curation
+
+RUN ls -lah /usr/src/curation
+
+WORKDIR /usr/src/curation/frontend
+
+RUN ls
+
+WORKDIR /usr/src/curation
+
+RUN  cd /usr/src/curation/
 
 EXPOSE 80
+
+# TODO: Remove DEBUG and developpment env variables while deploying
+# for flask specific environment variables (including app.py)
+ENV  FLASK_APP app.py
+ENV  FLASK_ENV development
+ENV  FLASK_DEBUG 1
+
+CMD python -m  flask run --host=0.0.0.0 --port 80
