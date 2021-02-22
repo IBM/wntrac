@@ -43,6 +43,7 @@ export class EvidenceReviewComponent implements OnInit {
   pageSize = 50;
   numberOfEvidences = 0;
   fetchRequestParams = {};
+  formIsComplete = false;
 
   @ViewChild('searchResultsContainer') searchResultsContainer: ElementRef;
 
@@ -53,6 +54,7 @@ export class EvidenceReviewComponent implements OnInit {
     value: [''],
     restriction: [''],
   });
+  newEvidence = {};
 
   constructor(
     private fb: FormBuilder,
@@ -86,6 +88,7 @@ export class EvidenceReviewComponent implements OnInit {
     this.apiService.getEventTypes(forceUpdate).subscribe((types: any) => {
       if (types) {
         this.types = this.apiService.mapEventTypes(types);
+        console.log(this.types);
         const eventTypesMap = new Map();
         types.forEach(entry => {
           if (eventTypesMap.get(entry.type) === undefined) {
@@ -196,6 +199,20 @@ export class EvidenceReviewComponent implements OnInit {
       this.pageIndex = 0;
     }
     const filters = this.evidenceFilterForm.value;
+    if (filters.country !== '' && filters.date !== '' && filters.restriction !== '' && filters.type !== ''
+      && filters.value !== '') {
+      this.formIsComplete = true;
+      this.newEvidence = {
+        country: filters.country,
+        date: filters.date,
+        type: filters.type,
+        value: filters.value,
+        restriction: filters.restriction
+      }
+    } else {
+      this.formIsComplete = false;
+      this.newEvidence = {};
+    }
     console.log(filters);
     this.getEvidences(filters);
   }

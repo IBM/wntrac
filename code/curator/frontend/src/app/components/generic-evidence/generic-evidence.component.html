@@ -226,7 +226,7 @@
           <gt-loading small="true"></gt-loading>
         </span>
       </button>
-      <button *ngIf="(!evidence.hasOwnProperty('even_id') && (evidence?.discard !== 'True') ||
+      <button *ngIf="(!addEvent && !evidence.hasOwnProperty('even_id') && (evidence?.discard !== 'True') ||
        (evidence.hasOwnProperty('id') && evidence.id.length > 0 && (evidence.deleted === 'False' || evidence.deleted === 'None')))"
               (click)="discardEvidence()" mat-raised-button color=""
               [disabled]="saveLoading || showEventLoading || (!verification && evidence.hasOwnProperty('even_id'))">
@@ -247,10 +247,10 @@
       </button>
 
 
-      <button *ngIf="!verification" (click)="focusOnText()" mat-raised-button color="">Focus on text
+      <button *ngIf="!verification && !addEvent" (click)="focusOnText()" mat-raised-button color="">Focus on text
       </button>
 
-      <button (click)="findMatches()" mat-raised-button color=""
+      <button *ngIf="!addEvent" (click)="findMatches()" mat-raised-button color=""
               [disabled]="(saveLoading || discardLoading || !evidence.hasOwnProperty('even_id') || evidence?.even_id === 'None' || evidence?.even_id === '(blank)' || evidence?.even_id === '')">
         Show Event
         <span *ngIf="showEventLoading" style="float:right">

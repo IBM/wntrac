@@ -33,6 +33,7 @@ import {IDropdownSettings} from 'ng-multiselect-dropdown';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {isNullOrUndefined} from "util";
 
 
 @Component({
@@ -51,7 +52,8 @@ export class GenericEvidenceComponent implements OnInit {
   @Output() updateEvidenceEntry = new EventEmitter<any>();
   @Input() evidence: any;
   @Input() verification = false;
-  @Input() elementIndex = 0;
+  @Input() elementIndex? = 0;
+  @Input() addEvent? = false;
 
   types: Array<string>; // types dropdown
   unmappedTypes: any; // types with value field type and values
@@ -231,7 +233,8 @@ export class GenericEvidenceComponent implements OnInit {
       approximate_date_selector: this.evidence.approx_date_bool,
       evid_id: this.evidence.evid_id,
       event_id: this.evidence.even_id,
-      doc_url: this.evidence.doc_url
+      doc_url: this.evidence.doc_url,
+      value: this.evidence.value
       //   this.evidence.fine_grained_location.includes('|')
       //     ? ''
       //     : this.evidence.fine_grained_location ,
@@ -439,7 +442,7 @@ export class GenericEvidenceComponent implements OnInit {
         console.log(error.stack);
         console.groupEnd();
       });
-    } else {
+    } else if (this.evidence.evid_id > 0) {
       this.apiService.updateCandidateEvidence(data, this.evidence.evid_id, this.evidence.sent_id).then((response) => {
         // Following code removes the box after updated. Based on new requirements on May 27, we don't want it to go.
         //
@@ -479,6 +482,9 @@ export class GenericEvidenceComponent implements OnInit {
         console.log(error.stack);
         console.groupEnd();
       });
+    } else {
+      // TODO: Charles to add logic
+      console.log("new evidence!");
     }
   }
 
@@ -819,3 +825,4 @@ export class GenericEvidenceComponent implements OnInit {
   }
 
 }
+
