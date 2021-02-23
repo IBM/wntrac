@@ -234,7 +234,7 @@ export class GenericEvidenceComponent implements OnInit {
       evid_id: this.evidence.evid_id,
       event_id: this.evidence.even_id,
       doc_url: this.evidence.doc_url,
-      value: this.evidence.value
+      // value: this.evidence.value
       //   this.evidence.fine_grained_location.includes('|')
       //     ? ''
       //     : this.evidence.fine_grained_location ,
@@ -243,7 +243,7 @@ export class GenericEvidenceComponent implements OnInit {
   }
 
   initializeVerificationFormValues() {
-    if (this.verification) {
+    if (this.verification || this.addEvent) {
       // Clear validators
       this.uncategorizedForm.controls.value.clearValidators();
 
@@ -483,8 +483,40 @@ export class GenericEvidenceComponent implements OnInit {
         console.groupEnd();
       });
     } else {
-      // TODO: Charles to add logic
-      console.log("new evidence!");
+      console.log(data);
+      this.apiService.insertEvidence(data).then((response) => {
+        console.log('response saving evidence', response);
+        this.saveLoading = false;
+        if (response.length === 0) {
+          this.snackBar.open('Unable to save event', 'Dismiss', {
+            duration: this.snackBarTimeOut,
+            verticalPosition: this.snackBarVerticalPosition,
+            horizontalPosition: this.snackBarHorizontalPosition
+          });
+        } else { // evidence updated
+          let popupText = '';
+          if (response.new_evidence && response.new_event) {
+            popupText = 'New evidence was created and a new event was created';
+          } else if (response.new_evidence && !response.new_event) {
+            popupText = 'New evidence was created and re-matched to an existing event';
+          } else if (!response.new_evidence && response.new_event) {
+            popupText = 'New event was created and re-matched with an existing evidence';
+          } else {
+            popupText = 'Event and evidence existed';
+          }
+          this.snackBar.open(popupText, 'Dismiss', {
+            duration: this.snackBarTimeOut,
+            verticalPosition: this.snackBarVerticalPosition,
+            horizontalPosition: this.snackBarHorizontalPosition
+          });
+        }
+      }).catch((error: Error) => {
+        this.saveLoading = false;
+        console.group('BaseComponent');
+        console.log('Error saving data for the new evidence');
+        console.log(error.stack);
+        console.groupEnd();
+      });
     }
   }
 
