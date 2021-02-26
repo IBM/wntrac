@@ -258,6 +258,7 @@ export class EvidenceReviewComponent implements OnInit {
       value: '',
       restriction: '',
     });
+    this.getEvidences();
   }
 
   updateAffectedEvidence(passedObject) {

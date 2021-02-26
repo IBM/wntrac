@@ -443,6 +443,91 @@ def CandidateEvidence(filter_dict=dict(),limit=50,offset=0):
         return jsonify(ce_with_document) , 200
 
 
+@app.route('/insertEvidence', methods=['POST'])
+def insert_evidence():
+    arg_dict = {x[0]: x[1][0] for x in list(request.args.lists())}
+
+    # Check whether an event already exists
+    event_composite_keys = ['country', 'date', 'restriction', 'type', 'value']
+
+    event_data = {}
+    evidence_data = {}
+    new_event_created = False
+    new_evidence_created = True
+
+    for key in event_composite_keys:
+        event_data[key] = arg_dict.get(key)
+
+    matched_event, matched_evidences = get_event(   event_data['type'], \
+                                                    event_data['country'], \
+                                                    event_data['date'], \
+                                                    event_data['value'], \
+                                                    event_data['restriction'], \
+                                                    get_evidences = False     # Not implemented
+                                                )
+
+    # If event id needs to be updated, then create new event or reuse previously created event
+    if len(matched_event) > 0:
+        evidence_data['even_id'] = matched_event[0]['even_id']
+    else:
+        new_event_uuid = create_event(type=event_data['type'],
+                                      country=event_data['country'],
+                                      date=event_data['date'],
+                                      value=event_data['value'],
+                                      restriction=event_data['restriction']
+                                      )
+        evidence_data['even_id'] = new_event_uuid
+        new_event_created = True
+
+    # update evidence table
+    update_fields =    ['anno_id', \
+                        'anno_provided_url', \
+                        'approx_date_bool', \
+                        'country',
+                        'date',
+                        'citation_url',
+                        'fine_grained_location',
+                        'restriction',
+                        'type',
+                        'value',
+                        'other_value']
+    for update_field in update_fields:
+        if arg_dict.get(update_field):
+            evidence_data[update_field] = arg_dict.get(update_field)
+
+    evidence_data['anno_id'] = arg_dict.get('sessionKey')
+    evidence_data['evid_id'] = str(uuid.uuid1())
+    evidence_data['sent_id'] = str(uuid.uuid1())
+
+    if len(matched_evidences) > 0:
+        check_fields =    ['anno_provided_url', \
+                           'approx_date_bool', \
+                           'country',
+                           'date',
+                           'citation_url',
+                           'fine_grained_location',
+                           'restriction',
+                           'type',
+                           'value',
+                           'other_value']
+        for matched_evidence in matched_evidences:
+            unique_evidence = False
+            for key in check_fields:
+                if matched_evidence[key] != evidence_data[key]:
+                    unique_evidence = True
+            if not unique_evidence:
+                new_evidence_created = False
+
+    if new_evidence_created:
+        new_evidence_created = insert_to_table(
+            table_name='evidence',
+            data=evidence_data
+        )
+    return jsonify({ "new_evidence": new_evidence_created,
+                     "new_event": new_event_created
+                     }) , 200
+
+
 @app.route('/evidence', methods=['GET', 'POST'])
 def evidence(filter_dict=dict(),limit=50,offset=0):
 

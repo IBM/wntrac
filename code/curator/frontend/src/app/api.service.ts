@@ -386,4 +386,35 @@ export class ApiService {
     return date;
   }
 
+  insertEvidence(formData): Promise<any> {
+    formData.sessionKey = this.sessionKey;
+    const httpOptions = {
+      params: {
+        sessionKey: this.sessionKey,
+        country: formData.country,
+        approx_date_bool: formData.approx_date_bool,
+        date: formData.date,
+        restriction: formData.restriction,
+        type: formData.type,
+        value: formData.value,
+        other_value: formData.other_value,
+        citation_url: formData.citation_url,
+        anno_provided_url: formData.anno_provided_url,
+        fine_grained_location: formData.fine_grained_location
+      }
+    };
+    console.log('Evidence Options');
+    console.log(httpOptions);
+    return this.http
+      .post(this.dataUrl + 'insertEvidence',
+        {},
+        httpOptions)
+      .toPromise()
+      .then((response: any) => {
+        return response;
+      })
+      .catch((error: Error) => {
+        return Promise.reject(this.makeErrorMessage(error, 'apiService(insertEvidence)'));
+      });
+  }
 }
