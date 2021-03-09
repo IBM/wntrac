@@ -22,7 +22,7 @@
     <mat-card-content>
       <!--      <h4 *ngIf="verification"># {{elementIndex + 1}}</h4>-->
 
-      <p *ngIf="verification; else normalEvidenceText">{{evidence.text}} <a href="{{this.evidence.doc_url}}"
+      <p *ngIf="verification; else normalEvidenceText">{{evidence.text}} <a *ngIf="evidence.doc_url !== 'None'" href="{{this.evidence.doc_url}}"
                                                                             target="_blank">Link to article</a></p>
       <ng-template #normalEvidenceText>
         <p>{{evidence.text}}</p>
