@@ -112,7 +112,8 @@ export class GenericEvidenceComponent implements OnInit {
     fine_grained_location: [''],
     approximate_date_selector: ['', Validators.required],
     event_id: [{value: '', disabled: this.verification}],
-    evid_id: [{value: '', disabled: this.verification}]
+    evid_id: [{value: '', disabled: this.verification}],
+    text: ['']
   });
 
   getEventTypes(forceUpdate = false) {

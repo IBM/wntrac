@@ -214,6 +214,10 @@
             Location is <strong>required</strong>. Switch to "Default" if you cannot provide one.
           </mat-error>
         </mat-form-field>
+        <mat-form-field hintLabel="Evidence sentence" *ngIf="addEvent">
+          <textarea matInput formControlName="text" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
+<!--          <input matInput #input formControlName="text"/>-->
+        </mat-form-field>
       </div>
 
     </mat-card-content>

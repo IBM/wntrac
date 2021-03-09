@@ -400,7 +400,8 @@ export class ApiService {
         other_value: formData.other_value,
         citation_url: formData.citation_url,
         anno_provided_url: formData.anno_provided_url,
-        fine_grained_location: formData.fine_grained_location
+        fine_grained_location: formData.fine_grained_location,
+        text: formData.text
       }
     };
     console.log('Evidence Options');

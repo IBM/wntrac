@@ -490,7 +490,8 @@ def insert_evidence():
                         'restriction',
                         'type',
                         'value',
-                        'other_value']
+                        'other_value',
+                        'text']
     for update_field in update_fields:
         if arg_dict.get(update_field):
             evidence_data[update_field] = arg_dict.get(update_field)
@@ -509,7 +510,8 @@ def insert_evidence():
                            'restriction',
                            'type',
                            'value',
-                           'other_value']
+                           'other_value',
+                           'text']
         for matched_evidence in matched_evidences:
             unique_evidence = False
             for key in check_fields:
