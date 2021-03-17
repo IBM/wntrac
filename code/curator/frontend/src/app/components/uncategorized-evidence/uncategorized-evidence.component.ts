@@ -43,12 +43,7 @@ export class UncategorizedEvidenceComponent implements OnInit {
 
     this.apiService.createSessionKey();
     this.apiService.getEventTypes().subscribe((types: any) => {}), ((error: Error) => {
-      // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
+
     });
 
     const params = this.getParams(window.location.href);
@@ -61,11 +56,9 @@ export class UncategorizedEvidenceComponent implements OnInit {
     this.loading = true;
 
     if (params['geo'] && params['geo'] !== '' && params['softmatch'] && params['softmatch'] === 'true') {
-      console.log('going to call getSoftmatchEvidence');
       var apiService = this.apiService.getSoftmatchEvidence(params['geo']);
 
     } else {
-      console.log('going to call getUncategorizedEvidence');
       var apiService = this.apiService.getUncategorizedEvidence();
     }
 
@@ -79,10 +72,6 @@ export class UncategorizedEvidenceComponent implements OnInit {
       this.loading = false;
       this.uncategorizedFailed = true;
       // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting uncategorized evidence');
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -124,7 +113,6 @@ export class UncategorizedEvidenceComponent implements OnInit {
               || mapEntry.official_type !== entry.official_type
               || mapEntry.integerstring !== entry.integerstring
               || mapEntry.eventtype_id !== entry.eventtype_id) {
-              console.error('Mismatch in preexisting map value!');
             } else {
               if (entry.official_value === 'True') {
                 const newCategory = {value: entry.value, official_value: entry.official_value};
@@ -143,12 +131,6 @@ export class UncategorizedEvidenceComponent implements OnInit {
       }
 
     }), ((error: Error) => {
-      // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 

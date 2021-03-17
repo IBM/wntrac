@@ -67,11 +67,6 @@ export class EvidenceReviewComponent implements OnInit {
     this.apiService.createSessionKey();
     this.apiService.getEventTypes().subscribe((types: any) => {}), ((error: Error) => {
       // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
 
 
@@ -89,7 +84,6 @@ export class EvidenceReviewComponent implements OnInit {
     this.apiService.getEventTypes(forceUpdate).subscribe((types: any) => {
       if (types) {
         this.types = this.apiService.mapEventTypes(types);
-        console.log(this.types);
         const eventTypesMap = new Map();
         types.forEach(entry => {
           if (eventTypesMap.get(entry.type) === undefined) {
@@ -111,7 +105,6 @@ export class EvidenceReviewComponent implements OnInit {
               || mapEntry.official_type !== entry.official_type
               || mapEntry.integerstring !== entry.integerstring
               || mapEntry.eventtype_id !== entry.eventtype_id) {
-              console.error('Mismatch in preexisting map value!');
             } else {
               if (entry.official_value === 'True') {
                 const newCategory = {value: entry.value, official_value: entry.official_value};
@@ -132,11 +125,6 @@ export class EvidenceReviewComponent implements OnInit {
 
     }), ((error: Error) => {
       // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -150,9 +138,6 @@ export class EvidenceReviewComponent implements OnInit {
 
     this.apiService.getEvidence(this.fetchRequestParams, filters).then((evidences: any) => {
       const evidencesKey = 'evidences';
-      // console.group('BaseComponent while fetching evidences');
-      // console.log(...evidences[evidencesKey]);
-      // console.groupEnd();
       this.evidences.push(...evidences[evidencesKey]);
       this.determineEvidenceSiblings();
       this.numberOfEvidences = this.evidences.length;
@@ -162,10 +147,6 @@ export class EvidenceReviewComponent implements OnInit {
       this.loading = false;
       this.uncategorizedFailed = true;
       // some handling for failed call
-      console.group('BaseComponent while fetching evidences');
-      console.log('Error getting evidences');
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -197,7 +178,6 @@ export class EvidenceReviewComponent implements OnInit {
   }
 
   filterEvidences(append?: boolean): void {
-    console.log('filter evidences');
     if (!append) {
       this.evidences = [];
       this.pageIndex = 0;
@@ -217,7 +197,6 @@ export class EvidenceReviewComponent implements OnInit {
       this.formIsComplete = false;
       this.newEvidence = {};
     }
-    console.log(filters);
     this.getEvidences(filters);
   }
 
