@@ -22,6 +22,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
 
 
 @Component({
@@ -93,7 +94,7 @@ export class EvidenceReviewComponent implements OnInit {
         types.forEach(entry => {
           if (eventTypesMap.get(entry.type) === undefined) {
             let newCategories = undefined;
-            if (entry.value !== 'None') {
+            if (entry.value !== 'None' && entry.official_value === 'True') {
               newCategories = [{value: entry.value, official_value: entry.official_value}];
             }
             eventTypesMap.set(entry.type,
@@ -112,12 +113,15 @@ export class EvidenceReviewComponent implements OnInit {
               || mapEntry.eventtype_id !== entry.eventtype_id) {
               console.error('Mismatch in preexisting map value!');
             } else {
-              const newCategory = {value: entry.value, official_value: entry.official_value};
-              mapEntry.categories.push(newCategory);
-              if (mapEntry.data_type === 'Tags') {
+              if (entry.official_value === 'True') {
+                const newCategory = {value: entry.value, official_value: entry.official_value};
+                mapEntry.categories.push(newCategory);
+              }
+              if (mapEntry.data_type === 'Tags' && isNotNullOrUndefined(mapEntry.categories)) {
                 mapEntry.categories.sort((a, b) => (a.value.toLowerCase() > b.value.toLowerCase()) ? 1 : -1);
               }
               eventTypesMap.set(entry.type, mapEntry);
+             
             }
           }
         });

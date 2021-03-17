@@ -70,7 +70,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field hintLabel="Date is approximate *" class="mat-form-field--no-underline" required>
+        <mat-form-field hintLabel="Is the Date approximate? *" class="mat-form-field--no-underline" required>
           <input matInput placeholder="" style="display: none"> <!-- It breaks if display none is not used. -->
           <mat-radio-group required formControlName="approximate_date_selector">
             <mat-radio-button color="primary" value="true">Yes</mat-radio-button>
@@ -168,7 +168,7 @@
           <mat-select formControlName="restriction" required>
             <mat-option value="1">Imposed</mat-option>
             <mat-option value="0">Relieved</mat-option>
-            <mat-option value="2">Extended</mat-option>
+            <!-- <mat-option value="2">Extended</mat-option> -->
           </mat-select>
           <mat-error *ngIf="uncategorizedForm.controls.restriction.hasError('required')">
             Restriction is <strong>required</strong>

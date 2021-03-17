@@ -305,10 +305,11 @@ export class ApiService {
 
   // map into format that we need for autocomplete
   mapEventTypes(types: Array<any>): Array<any> {
-    const mappedTypes = types.map((entry) => {
+    let mappedTypes = types.map((entry) => {
       // return {type: entry['type'], data_type: entry['data_type'], official_type: entry['official_type']}
       return entry.type;
     });
+    mappedTypes = mappedTypes.filter(type => type !== 'other'); // Added a filter to remove other type as recommended!
     return [...new Set(mappedTypes)];
   }
 

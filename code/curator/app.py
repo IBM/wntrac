@@ -498,7 +498,7 @@ def insert_evidence():
 
     evidence_data['anno_id'] = arg_dict.get('sessionKey')
     evidence_data['evid_id'] = str(uuid.uuid1())
-    evidence_data['sent_id'] = str(uuid.uuid1())
+    evidence_data['sent_id'] = 'manual-entry'
 
     if len(matched_evidences) > 0:
         check_fields =    ['anno_provided_url', \
