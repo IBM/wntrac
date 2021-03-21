@@ -17,6 +17,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import {FormBuilder} from '@angular/forms';
+import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
 
 @Component({
   selector: 'app-uncategorized-evidence',
@@ -42,12 +43,7 @@ export class UncategorizedEvidenceComponent implements OnInit {
 
     this.apiService.createSessionKey();
     this.apiService.getEventTypes().subscribe((types: any) => {}), ((error: Error) => {
-      // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
+
     });
 
     const params = this.getParams(window.location.href);
@@ -60,11 +56,9 @@ export class UncategorizedEvidenceComponent implements OnInit {
     this.loading = true;
 
     if (params['geo'] && params['geo'] !== '' && params['softmatch'] && params['softmatch'] === 'true') {
-      console.log('going to call getSoftmatchEvidence');
       var apiService = this.apiService.getSoftmatchEvidence(params['geo']);
 
     } else {
-      console.log('going to call getUncategorizedEvidence');
       var apiService = this.apiService.getUncategorizedEvidence();
     }
 
@@ -78,10 +72,6 @@ export class UncategorizedEvidenceComponent implements OnInit {
       this.loading = false;
       this.uncategorizedFailed = true;
       // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting uncategorized evidence');
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -106,7 +96,7 @@ export class UncategorizedEvidenceComponent implements OnInit {
         types.forEach(entry => {
           if (eventTypesMap.get(entry.type) === undefined) {
             let newCategories = undefined;
-            if (entry.value !== 'None') {
+            if (entry.value !== 'None' && entry.official_value === 'True') {
               newCategories = [{value: entry.value, official_value: entry.official_value}];
             }
             eventTypesMap.set(entry.type,
@@ -123,11 +113,12 @@ export class UncategorizedEvidenceComponent implements OnInit {
               || mapEntry.official_type !== entry.official_type
               || mapEntry.integerstring !== entry.integerstring
               || mapEntry.eventtype_id !== entry.eventtype_id) {
-              console.error('Mismatch in preexisting map value!');
             } else {
-              const newCategory = {value: entry.value, official_value: entry.official_value};
-              mapEntry.categories.push(newCategory);
-              if (mapEntry.data_type === 'Tags') {
+              if (entry.official_value === 'True') {
+                const newCategory = {value: entry.value, official_value: entry.official_value};
+                mapEntry.categories.push(newCategory);
+              }
+              if (mapEntry.data_type === 'Tags' && isNotNullOrUndefined(mapEntry.categories)) {
                 mapEntry.categories.sort((a, b) => (a.value.toLowerCase() > b.value.toLowerCase()) ? 1 : -1);
               }
               eventTypesMap.set(entry.type, mapEntry);
@@ -140,12 +131,6 @@ export class UncategorizedEvidenceComponent implements OnInit {
       }
 
     }), ((error: Error) => {
-      // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 

@@ -33,6 +33,9 @@ import {IDropdownSettings} from 'ng-multiselect-dropdown';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {isNullOrUndefined} from "util";
+import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
+
 
 
 @Component({
@@ -51,7 +54,8 @@ export class GenericEvidenceComponent implements OnInit {
   @Output() updateEvidenceEntry = new EventEmitter<any>();
   @Input() evidence: any;
   @Input() verification = false;
-  @Input() elementIndex = 0;
+  @Input() elementIndex? = 0;
+  @Input() addEvent? = false;
 
   types: Array<string>; // types dropdown
   unmappedTypes: any; // types with value field type and values
@@ -110,7 +114,8 @@ export class GenericEvidenceComponent implements OnInit {
     fine_grained_location: [''],
     approximate_date_selector: ['', Validators.required],
     event_id: [{value: '', disabled: this.verification}],
-    evid_id: [{value: '', disabled: this.verification}]
+    evid_id: [{value: '', disabled: this.verification}],
+    text: ['']
   });
 
   getEventTypes(forceUpdate = false) {
@@ -121,7 +126,7 @@ export class GenericEvidenceComponent implements OnInit {
         types.forEach(entry => {
           if (eventTypeMap.get(entry.type) === undefined) {
             let newCategories = undefined;
-            if (entry.value !== 'None') {
+            if (entry.value !== 'None' && entry.official_value === 'True') {
               newCategories = [{value: entry.value, official_value: entry.official_value}];
             }
             eventTypeMap.set(entry.type,
@@ -138,11 +143,12 @@ export class GenericEvidenceComponent implements OnInit {
               || mapEntry.official_type !== entry.official_type
               || mapEntry.integerstring !== entry.integerstring
               || mapEntry.eventtype_id !== entry.eventtype_id) {
-              console.error('Mismatch in preexisting map value!');
             } else {
-              const newCategory = {value: entry.value, official_value: entry.official_value};
-              mapEntry.categories.push(newCategory);
-              if (mapEntry.data_type === 'Tags') {
+              if (entry.official_value === 'True') {
+                const newCategory = {value: entry.value, official_value: entry.official_value};
+                mapEntry.categories.push(newCategory);
+              }
+              if (mapEntry.data_type === 'Tags' && isNotNullOrUndefined(mapEntry.categories)) {
                 mapEntry.categories.sort((a, b) => (a.value.toLowerCase() > b.value.toLowerCase()) ? 1 : -1);
               }
               eventTypeMap.set(entry.type, mapEntry);
@@ -163,12 +169,6 @@ export class GenericEvidenceComponent implements OnInit {
 
       this.initializeVerificationFormValues();
     }), ((error: Error) => {
-      // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -186,10 +186,6 @@ export class GenericEvidenceComponent implements OnInit {
       this.getEventTypes();
     });
 
-    // set the initial values of form
-    // console.log('data in: ');
-    // console.log(this.evidence);
-
     this.initializeForm();
 
     let oldType = this.evidence.type;
@@ -206,7 +202,6 @@ export class GenericEvidenceComponent implements OnInit {
       this.selectedTags = [];
       this.multiSelectedCountries = [];
       oldType = val;
-      // console.log(this.uncategorizedForm.controls.value)
     });
 
     // autocomplete
@@ -231,7 +226,8 @@ export class GenericEvidenceComponent implements OnInit {
       approximate_date_selector: this.evidence.approx_date_bool,
       evid_id: this.evidence.evid_id,
       event_id: this.evidence.even_id,
-      doc_url: this.evidence.doc_url
+      doc_url: this.evidence.doc_url,
+      // value: this.evidence.value
       //   this.evidence.fine_grained_location.includes('|')
       //     ? ''
       //     : this.evidence.fine_grained_location ,
@@ -240,7 +236,7 @@ export class GenericEvidenceComponent implements OnInit {
   }
 
   initializeVerificationFormValues() {
-    if (this.verification) {
+    if (this.verification || this.addEvent) {
       // Clear validators
       this.uncategorizedForm.controls.value.clearValidators();
 
@@ -281,9 +277,7 @@ export class GenericEvidenceComponent implements OnInit {
   }
 
   countryClick(event: any) {
-    // console.log(this.uncategorizedForm.controls.country)
     this.selectedCountry = event.option.value;
-    // console.log(this.uncategorizedForm.controls.country)
   }
 
   checkCountry() {
@@ -295,7 +289,6 @@ export class GenericEvidenceComponent implements OnInit {
   }
 
   fixDate(input) {
-    // console.log(`fixDate: ${input}`);
     const date = moment(input).format();
     return date;
   }
@@ -308,7 +301,6 @@ export class GenericEvidenceComponent implements OnInit {
       const date = moment(formValues.date).format('YYYY-MM-DD');
       formValues.date = date; // api expects 'YYYY-MM-DD'
     } else {
-      console.log('DATE ERROR!');
     }
 
     // This is kind of a hack, Angular doesn't allow '' to pop up in the values
@@ -322,7 +314,6 @@ export class GenericEvidenceComponent implements OnInit {
     if (this.value.data_type === 'Category') {
       const matches = this.value.categories.filter(category => category.value.toLowerCase() === formValues.value.toLowerCase());
       if (matches.length === 0) {
-        console.log('New value detected');
         formValues.newValue = true;
         formValues.newType = false;
         if (formValues.value !== 'other') {
@@ -330,27 +321,21 @@ export class GenericEvidenceComponent implements OnInit {
           formValues.value = 'other';
         }
 
-        console.log('newValue, formValues:');
-        console.log(formValues);
+
 
       } else if (matches.length === 1) {
-        console.log('Preexisting value detected');
         formValues.newValue = false;
         formValues.newType = false;
 
         if (matches[0].official_value === 'True') {
-          console.log('Preexisting official value');
         } else {
-          console.log('Preexisting user-suggested value');
           if (formValues.value !== 'other') {
             formValues.other_value = formValues.value + '';
             formValues.value = 'other';
           }
         }
-        console.log('Preexisting value, formValues:');
-        console.log(formValues);
       } else {
-        console.error('Multiple value matches detected. This shouldn\'t be happening.');
+
       }
 
     } else if (this.value.data_type === 'Country') {
@@ -367,7 +352,6 @@ export class GenericEvidenceComponent implements OnInit {
       } else if (sel.includes('na')) {
         formValues.value = 'na';
       } else {
-        console.error('undefined country value selections.');
         formValues.value = 'regionSaveError';
       }
     } else if (this.value.data_type === 'Tags') {
@@ -402,7 +386,6 @@ export class GenericEvidenceComponent implements OnInit {
     if (this.verification || this.evidence.id > 0) {
       this.previousEventId = this.evidence.even_id;
       this.apiService.updateEvidence(data, this.evidence.id).then((response) => {
-        console.log('response updating evidence', response);
         this.saveLoading = false;
         if (Object.entries(response.evidence).length === 0) {
           this.snackBar.open('Unable to find any matching evidence', 'Dismiss', {
@@ -434,12 +417,8 @@ export class GenericEvidenceComponent implements OnInit {
         }
       }).catch((error: Error) => {
         this.saveLoading = false;
-        console.group('BaseComponent');
-        console.log('Error saving data for evidence: ' + this.evidence.id);
-        console.log(error.stack);
-        console.groupEnd();
       });
-    } else {
+    } else if (this.evidence.evid_id > 0) {
       this.apiService.updateCandidateEvidence(data, this.evidence.evid_id, this.evidence.sent_id).then((response) => {
         // Following code removes the box after updated. Based on new requirements on May 27, we don't want it to go.
         //
@@ -474,10 +453,35 @@ export class GenericEvidenceComponent implements OnInit {
         }
       }).catch((error: Error) => {
         this.saveLoading = false;
-        console.group('BaseComponent');
-        console.log('Error saving data for CandidateEvidence: ' + this.evidence.evid_id);
-        console.log(error.stack);
-        console.groupEnd();
+      });
+    } else {
+      this.apiService.insertEvidence(data).then((response) => {
+        this.saveLoading = false;
+        if (response.length === 0) {
+          this.snackBar.open('Unable to save event', 'Dismiss', {
+            duration: this.snackBarTimeOut,
+            verticalPosition: this.snackBarVerticalPosition,
+            horizontalPosition: this.snackBarHorizontalPosition
+          });
+        } else { // evidence updated
+          let popupText = '';
+          if (response.new_evidence && response.new_event) {
+            popupText = 'New evidence was created and a new event was created';
+          } else if (response.new_evidence && !response.new_event) {
+            popupText = 'New evidence was created and re-matched to an existing event';
+          } else if (!response.new_evidence && response.new_event) {
+            popupText = 'New event was created and re-matched with an existing evidence';
+          } else {
+            popupText = 'Event and evidence existed';
+          }
+          this.snackBar.open(popupText, 'Dismiss', {
+            duration: this.snackBarTimeOut,
+            verticalPosition: this.snackBarVerticalPosition,
+            horizontalPosition: this.snackBarHorizontalPosition
+          });
+        }
+      }).catch((error: Error) => {
+        this.saveLoading = false;
       });
     }
   }
@@ -501,10 +505,6 @@ export class GenericEvidenceComponent implements OnInit {
       }
     }).catch((error: Error) => {
       this.showEventLoading = false;
-      console.group('BaseComponent');
-      console.log('Error showing event for EventID: ' + this.evidence.even_id);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -536,10 +536,6 @@ export class GenericEvidenceComponent implements OnInit {
       }
     }).catch((error: Error) => {
       this.saveLoading = false;
-      console.group('BaseComponent');
-      console.log('Error updating data for CandidateEvidence: ' + this.evidence.evid_id);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -569,10 +565,6 @@ export class GenericEvidenceComponent implements OnInit {
         this.discardLoading = false;
       }).catch((error: Error) => {
         this.discardLoading = false;
-        console.group('BaseComponent');
-        console.log('Error discarding data for CandidateEvidence: ' + this.evidence.evid_id);
-        console.log(error.stack);
-        console.groupEnd();
       });
     }
   }
@@ -599,10 +591,6 @@ export class GenericEvidenceComponent implements OnInit {
         verticalPosition: this.snackBarVerticalPosition,
         horizontalPosition: this.snackBarHorizontalPosition
       });
-      console.group('BaseComponent');
-      console.log('Error discarding evidence data for ID: ' + evidenceID);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -620,7 +608,6 @@ export class GenericEvidenceComponent implements OnInit {
         this.sentToDiscard = false;
         this.sentToSave = false;
         this.undoDeleteLoading = false;
-        console.log(response);
         this.evidence.deleted = 'False';
       }).catch((error: Error) => {
         this.undoDeleteLoading = false;
@@ -629,10 +616,6 @@ export class GenericEvidenceComponent implements OnInit {
           verticalPosition: this.snackBarVerticalPosition,
           horizontalPosition: this.snackBarHorizontalPosition
         });
-        console.group('BaseComponent');
-        console.log('Error restoring evidence data for ID: ' + evidenceID);
-        console.log(error.stack);
-        console.groupEnd();
       });
     } else {
       this.undoDiscardCandidateEvidence(evidenceID);
@@ -658,10 +641,6 @@ export class GenericEvidenceComponent implements OnInit {
         verticalPosition: this.snackBarVerticalPosition,
         horizontalPosition: this.snackBarHorizontalPosition
       });
-      console.group('BaseComponent');
-      console.log('Error restoring evidence data for ID: ' + evidenceID);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -674,11 +653,9 @@ export class GenericEvidenceComponent implements OnInit {
     const textArea = (<HTMLTextAreaElement> document.getElementById('doc_textarea'));
     const selectionStart = this.evidence.begin_offset;
     const selectionEnd = this.evidence.end_offset;
-    // console.log('in focus on text')
     // focus on the element
     textArea.blur();
     textArea.focus();
-    // console.log('in focus on text2')
 
     // This is a hack because Chrome has issue with scrolling to the right location
     const fullText = textArea.value;
@@ -686,11 +663,8 @@ export class GenericEvidenceComponent implements OnInit {
     textArea.scrollTop = 0;
     textArea.scrollTop = textArea.scrollHeight;
     textArea.value = fullText;
-    // console.log('in focus on text3')
-
     // Highlighting the selection Range
     textArea.setSelectionRange(selectionStart, selectionEnd);
-    // console.log('in focus on text4')
   }
 
 
@@ -819,3 +793,4 @@ export class GenericEvidenceComponent implements OnInit {
   }
 
 }
+
