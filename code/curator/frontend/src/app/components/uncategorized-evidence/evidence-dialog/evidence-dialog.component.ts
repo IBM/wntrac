@@ -50,7 +50,6 @@ export class EvidenceDialogComponent {
     try {
       this.performUpdateOfDeleteField(evidenceID, selectedEvidence, 'True');
     } catch {
-      console.error(`error deleting evidence ${evidenceID}`);
       this.dialogRef.disableClose = false;
     }
   }
@@ -59,7 +58,6 @@ export class EvidenceDialogComponent {
     try {
       this.performUpdateOfDeleteField(evidenceID, selectedEvidence, 'False');
     } catch {
-      console.error(`error deleting evidence ${evidenceID}`);
       this.dialogRef.disableClose = false;
     }
   }
@@ -76,10 +74,7 @@ export class EvidenceDialogComponent {
       });
       this.dialogRef.disableClose = false;
     }).catch((error: Error) => {
-      console.group('Evidence Dialog');
-      console.log('Error deleting evidence data for ID: ' + evidenceID);
-      console.log(error.stack);
-      console.groupEnd();
+
       this.dialogRef.disableClose = false;
     });
   }

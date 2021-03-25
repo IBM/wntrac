@@ -49,7 +49,6 @@ export class ApiService {
     return this.http.get(this.dataUrl + 'candidateEvidence?sessionKey=' + this.sessionKey + '&limit=20&unassociated=true')
       .toPromise()
       .then((evidenceAndDocumentText: Array<object>) => {
-        console.log('in api.service evidenceAndDocumentText', evidenceAndDocumentText);
         return evidenceAndDocumentText;
       })
       .catch((error: Error) => {
@@ -63,7 +62,6 @@ export class ApiService {
     return this.http.get(this.dataUrl + 'candidateEvidence?softmatch=true&geo=' + geo)
       .toPromise()
       .then((evidenceAndDocumentText: Array<object>) => {
-        console.log('in api.service evidenceAndDocumentText', evidenceAndDocumentText);
         return evidenceAndDocumentText;
       })
       .catch((error: Error) => {
@@ -149,8 +147,6 @@ export class ApiService {
         valueHasTags: formData.valueHasTags
       }
     };
-    console.log('candidateEvidence Options');
-    console.log(httpOptions);
     return this.http
       .post(this.dataUrl + 'candidateEvidence', formData, httpOptions)
       // .post(this.dataUrl + 'candidateEvidence', {}, httpOptions)
@@ -181,8 +177,6 @@ export class ApiService {
         fine_grained_location: formData.fine_grained_location
       }
     };
-    console.log('Evidence Options');
-    console.log(httpOptions);
     return this.http
       .post(this.dataUrl + 'evidence',
         {},
@@ -208,13 +202,11 @@ export class ApiService {
         // isNewValue: formData.newValue, removed because CE update handles this
       }
     };
-    console.log('promoteToEventOptions');
-    console.log(httpOptions);
+
     return this.http
       .post(this.dataUrl + 'event' + '?evid_id=' + evId + '&promote=true', null, httpOptions)
       .toPromise()
       .then((response: any) => {
-        console.log(response);
         return response;
       })
       .catch((error: Error) => {
@@ -234,7 +226,6 @@ export class ApiService {
       .get(this.dataUrl + 'checkAssociation' + '?evid_id=' + evId)
       .toPromise()
       .then((response: any) => {
-        console.log(response);
         return response;
       })
       .catch((error: Error) => {
@@ -251,7 +242,6 @@ export class ApiService {
       .get(this.dataUrl + 'event' + '?id=' + eventID)
       .toPromise()
       .then((response: any) => {
-        console.log(response);
         return response;
       })
       .catch((error: Error) => {
@@ -293,11 +283,9 @@ export class ApiService {
   getEventTypes(forceUpdate = false): Observable<any> {
     const name = 'eventType';
     if (this.eventSubject.has(name) && !forceUpdate) {
-      // console.log('Using cached HTTP results for events')
       return this.eventSubject.get(name);
     } else {
       this.eventSubject.set(name, new BehaviorSubject<Array<any>>(null));
-      // console.log('Making HTTP call for events')
       this.getEventSubjects(name);
       return this.eventSubject.get(name);
     }
@@ -305,10 +293,11 @@ export class ApiService {
 
   // map into format that we need for autocomplete
   mapEventTypes(types: Array<any>): Array<any> {
-    const mappedTypes = types.map((entry) => {
+    let mappedTypes = types.map((entry) => {
       // return {type: entry['type'], data_type: entry['data_type'], official_type: entry['official_type']}
       return entry.type;
     });
+    mappedTypes = mappedTypes.filter(type => type !== 'other'); // Added a filter to remove other type as recommended!
     return [...new Set(mappedTypes)];
   }
 
@@ -362,7 +351,6 @@ export class ApiService {
         if (filter === 'date') {
           filters[filter] = this.fixDate(filters[filter]);
         }
-        console.log(filter, filters[filter]);
         path += filter + '=' + filters[filter] + '&';
       }
     }
@@ -370,7 +358,6 @@ export class ApiService {
     return this.http.get(path)
       .toPromise()
       .then((evidences: Array<object>) => {
-        // console.log('in api.service getEvidence', evidences);
         return evidences;
       })
       .catch((error: Error) => {
@@ -386,4 +373,34 @@ export class ApiService {
     return date;
   }
 
+  insertEvidence(formData): Promise<any> {
+    formData.sessionKey = this.sessionKey;
+    const httpOptions = {
+      params: {
+        sessionKey: this.sessionKey,
+        country: formData.country,
+        approx_date_bool: formData.approx_date_bool,
+        date: formData.date,
+        restriction: formData.restriction,
+        type: formData.type,
+        value: formData.value,
+        other_value: formData.other_value,
+        citation_url: formData.citation_url,
+        anno_provided_url: formData.anno_provided_url,
+        fine_grained_location: formData.fine_grained_location,
+        text: formData.text
+      }
+    };
+    return this.http
+      .post(this.dataUrl + 'insertEvidence',
+        {},
+        httpOptions)
+      .toPromise()
+      .then((response: any) => {
+        return response;
+      })
+      .catch((error: Error) => {
+        return Promise.reject(this.makeErrorMessage(error, 'apiService(insertEvidence)'));
+      });
+  }
 }

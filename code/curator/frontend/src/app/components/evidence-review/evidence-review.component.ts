@@ -22,6 +22,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class EvidenceReviewComponent implements OnInit {
   pageSize = 50;
   numberOfEvidences = 0;
   fetchRequestParams = {};
+  formIsComplete = false;
 
   @ViewChild('searchResultsContainer') searchResultsContainer: ElementRef;
 
@@ -53,6 +55,7 @@ export class EvidenceReviewComponent implements OnInit {
     value: [''],
     restriction: [''],
   });
+  newEvidence = {};
 
   constructor(
     private fb: FormBuilder,
@@ -64,11 +67,6 @@ export class EvidenceReviewComponent implements OnInit {
     this.apiService.createSessionKey();
     this.apiService.getEventTypes().subscribe((types: any) => {}), ((error: Error) => {
       // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
 
 
@@ -90,7 +88,7 @@ export class EvidenceReviewComponent implements OnInit {
         types.forEach(entry => {
           if (eventTypesMap.get(entry.type) === undefined) {
             let newCategories = undefined;
-            if (entry.value !== 'None') {
+            if (entry.value !== 'None' && entry.official_value === 'True') {
               newCategories = [{value: entry.value, official_value: entry.official_value}];
             }
             eventTypesMap.set(entry.type,
@@ -107,14 +105,16 @@ export class EvidenceReviewComponent implements OnInit {
               || mapEntry.official_type !== entry.official_type
               || mapEntry.integerstring !== entry.integerstring
               || mapEntry.eventtype_id !== entry.eventtype_id) {
-              console.error('Mismatch in preexisting map value!');
             } else {
-              const newCategory = {value: entry.value, official_value: entry.official_value};
-              mapEntry.categories.push(newCategory);
-              if (mapEntry.data_type === 'Tags') {
+              if (entry.official_value === 'True') {
+                const newCategory = {value: entry.value, official_value: entry.official_value};
+                mapEntry.categories.push(newCategory);
+              }
+              if (mapEntry.data_type === 'Tags' && isNotNullOrUndefined(mapEntry.categories)) {
                 mapEntry.categories.sort((a, b) => (a.value.toLowerCase() > b.value.toLowerCase()) ? 1 : -1);
               }
               eventTypesMap.set(entry.type, mapEntry);
+             
             }
           }
         });
@@ -125,11 +125,6 @@ export class EvidenceReviewComponent implements OnInit {
 
     }), ((error: Error) => {
       // some handling for failed call
-      console.group('BaseComponent');
-      console.log('Error getting event types');
-      console.log(error);
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -143,9 +138,6 @@ export class EvidenceReviewComponent implements OnInit {
 
     this.apiService.getEvidence(this.fetchRequestParams, filters).then((evidences: any) => {
       const evidencesKey = 'evidences';
-      // console.group('BaseComponent while fetching evidences');
-      // console.log(...evidences[evidencesKey]);
-      // console.groupEnd();
       this.evidences.push(...evidences[evidencesKey]);
       this.determineEvidenceSiblings();
       this.numberOfEvidences = this.evidences.length;
@@ -155,10 +147,6 @@ export class EvidenceReviewComponent implements OnInit {
       this.loading = false;
       this.uncategorizedFailed = true;
       // some handling for failed call
-      console.group('BaseComponent while fetching evidences');
-      console.log('Error getting evidences');
-      console.log(error.stack);
-      console.groupEnd();
     });
   }
 
@@ -190,13 +178,25 @@ export class EvidenceReviewComponent implements OnInit {
   }
 
   filterEvidences(append?: boolean): void {
-    console.log('filter evidences');
     if (!append) {
       this.evidences = [];
       this.pageIndex = 0;
     }
     const filters = this.evidenceFilterForm.value;
-    console.log(filters);
+    if (filters.country !== '' && filters.date !== '' && filters.restriction !== '' && filters.type !== ''
+      && filters.value !== '') {
+      this.formIsComplete = true;
+      this.newEvidence = {
+        country: filters.country,
+        date: filters.date,
+        type: filters.type,
+        value: filters.value,
+        restriction: filters.restriction
+      }
+    } else {
+      this.formIsComplete = false;
+      this.newEvidence = {};
+    }
     this.getEvidences(filters);
   }
 
@@ -241,6 +241,7 @@ export class EvidenceReviewComponent implements OnInit {
       value: '',
       restriction: '',
     });
+    this.getEvidences();
   }
 
   updateAffectedEvidence(passedObject) {

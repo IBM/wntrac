@@ -73,7 +73,7 @@
         <mat-select formControlName="restriction">
           <mat-option value="1">Imposed</mat-option>
           <mat-option value="0">Relieved</mat-option>
-          <mat-option value="2">Extended</mat-option>
+          <!-- <mat-option value="2">Extended</mat-option> -->
           <mat-option value="-"></mat-option>
         </mat-select>
       </mat-form-field>
@@ -95,6 +95,12 @@
   <div #searchResultsContainer class="search-results-container">
     <ng-template #noSearchResult>
       <h4>No search result found</h4>
+      <div *ngIf="formIsComplete" class="item-container">
+        <span style="font-size: 1rem;">Add new event:</span>
+        <app-generic-evidence [evidence]="newEvidence" [verification]="false" [addEvent]="true"
+                              (updateEvidenceEntry)="updateAffectedEvidence($event)">
+        </app-generic-evidence>
+      </div>
     </ng-template>
     <div *ngFor="let evidence of paginatedEvidences; let i = index" class="item-container">
       <app-generic-evidence [evidence]="evidence" [verification]="true"
@@ -107,3 +113,4 @@
                  [pageSizeOptions]="[5, 10, 25, 50]" (page)="updateEvidencesList($event)">
   </mat-paginator>
 </div>
+

@@ -22,7 +22,7 @@
     <mat-card-content>
       <!--      <h4 *ngIf="verification"># {{elementIndex + 1}}</h4>-->
 
-      <p *ngIf="verification; else normalEvidenceText">{{evidence.text}} <a href="{{this.evidence.doc_url}}"
+      <p *ngIf="verification; else normalEvidenceText">{{evidence.text}} <a *ngIf="evidence.doc_url !== 'None'" href="{{this.evidence.doc_url}}"
                                                                             target="_blank">Link to article</a></p>
       <ng-template #normalEvidenceText>
         <p>{{evidence.text}}</p>
@@ -70,7 +70,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field hintLabel="Date is approximate *" class="mat-form-field--no-underline" required>
+        <mat-form-field hintLabel="Is the Date approximate? *" class="mat-form-field--no-underline" required>
           <input matInput placeholder="" style="display: none"> <!-- It breaks if display none is not used. -->
           <mat-radio-group required formControlName="approximate_date_selector">
             <mat-radio-button color="primary" value="true">Yes</mat-radio-button>
@@ -168,7 +168,7 @@
           <mat-select formControlName="restriction" required>
             <mat-option value="1">Imposed</mat-option>
             <mat-option value="0">Relieved</mat-option>
-            <mat-option value="2">Extended</mat-option>
+            <!-- <mat-option value="2">Extended</mat-option> -->
           </mat-select>
           <mat-error *ngIf="uncategorizedForm.controls.restriction.hasError('required')">
             Restriction is <strong>required</strong>
@@ -214,6 +214,10 @@
             Location is <strong>required</strong>. Switch to "Default" if you cannot provide one.
           </mat-error>
         </mat-form-field>
+        <mat-form-field hintLabel="Evidence sentence" *ngIf="addEvent">
+          <textarea matInput formControlName="text" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=5></textarea>
+<!--          <input matInput #input formControlName="text"/>-->
+        </mat-form-field>
       </div>
 
     </mat-card-content>
@@ -226,7 +230,7 @@
           <gt-loading small="true"></gt-loading>
         </span>
       </button>
-      <button *ngIf="(!evidence.hasOwnProperty('even_id') && (evidence?.discard !== 'True') ||
+      <button *ngIf="(!addEvent && !evidence.hasOwnProperty('even_id') && (evidence?.discard !== 'True') ||
        (evidence.hasOwnProperty('id') && evidence.id.length > 0 && (evidence.deleted === 'False' || evidence.deleted === 'None')))"
               (click)="discardEvidence()" mat-raised-button color=""
               [disabled]="saveLoading || showEventLoading || (!verification && evidence.hasOwnProperty('even_id'))">
@@ -247,10 +251,10 @@
       </button>
 
 
-      <button *ngIf="!verification" (click)="focusOnText()" mat-raised-button color="">Focus on text
+      <button *ngIf="!verification && !addEvent" (click)="focusOnText()" mat-raised-button color="">Focus on text
       </button>
 
-      <button (click)="findMatches()" mat-raised-button color=""
+      <button *ngIf="!addEvent" (click)="findMatches()" mat-raised-button color=""
               [disabled]="(saveLoading || discardLoading || !evidence.hasOwnProperty('even_id') || evidence?.even_id === 'None' || evidence?.even_id === '(blank)' || evidence?.even_id === '')">
         Show Event
         <span *ngIf="showEventLoading" style="float:right">
