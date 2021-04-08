@@ -3,6 +3,7 @@
 
 | Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Release&nbsp;date&nbsp; | Release notes |
 | :--- | :--- | :---  |
+| [2021-04-07](../../../raw/master/data/ibm-wntrac-2021-04-07.zip) | Apr 08, 2021 | WNTRAC dataset updated with NPI events until 2021-04-07. 69 NPI events registered since last update. |
 | [2021-03-21](../../../raw/master/data/ibm-wntrac-2021-03-21.zip) | Mar 25, 2021 | WNTRAC dataset updated with NPI events until 2021-03-21. 16 NPI events registered since last update. |
 | [2021-03-15](../../../raw/master/data/ibm-wntrac-2021-03-15.zip) | Mar 16, 2021 | WNTRAC dataset updated with NPI events until 2021-03-15. 89 NPI events registered since last update. |
 | [2021-02-22](../../../raw/master/data/ibm-wntrac-2021-02-22.zip) | Mar 02, 2021 | WNTRAC dataset updated with NPI events until 2021-02-22. 16 NPI events registered since last update. ISR school closure issue was fixed. |
