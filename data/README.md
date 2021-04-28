@@ -3,7 +3,7 @@
 
 | Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Release&nbsp;date&nbsp; | Release notes |
 | :--- | :--- | :---  |
-| [2021-04-14](../../../raw/master/data/ibm-wntrac-2021-04-14.zip) | Apr 21, 2021 | WNTRAC dataset updated with NPI events until 2021-04-14. 138 NPI events registered since last update including SA added events. |
+| [2021-04-14](../../../raw/master/data/ibm-wntrac-2021-04-14.zip) | Apr 21, 2021 | WNTRAC dataset updated with NPI events until 2021-04-14. 138 NPI events registered since last update including manually entered events from UG, CD, NG & SN. |
 | [2021-04-07](../../../raw/master/data/ibm-wntrac-2021-04-07.zip) | Apr 08, 2021 | WNTRAC dataset updated with NPI events until 2021-04-07. 69 NPI events registered since last update. |
 | [2021-03-21](../../../raw/master/data/ibm-wntrac-2021-03-21.zip) | Mar 25, 2021 | WNTRAC dataset updated with NPI events until 2021-03-21. 16 NPI events registered since last update. |
 | [2021-03-15](../../../raw/master/data/ibm-wntrac-2021-03-15.zip) | Mar 16, 2021 | WNTRAC dataset updated with NPI events until 2021-03-15. 89 NPI events registered since last update. |
